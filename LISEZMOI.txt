@@ -1,0 +1,16 @@
+Application Android : Concentration et solutions électrolytiques (1 Bac SE)
+Pr Hicham MESBAH
+
+Ouvrir et lancer
+1. Décompresser le dossier SolutionsElectrolytiques.
+2. Android Studio > File > Open > choisir le dossier SolutionsElectrolytiques.
+3. Attendre la synchronisation Gradle (connexion internet nécessaire la première fois).
+   Si Android Studio propose de mettre à jour Gradle ou le plugin Android, accepter.
+4. Brancher un téléphone (mode développeur + débogage USB) ou lancer un émulateur, puis cliquer sur Run ▶.
+
+Créer l'APK à partager aux élèves
+Build > Build App Bundle(s) / APK(s) > Build APK(s)
+Le fichier se trouve dans app/build/outputs/apk/debug/app-debug.apk
+
+Modifier le cours
+Le cours est le fichier app/src/main/assets/index.html : il suffit de le remplacer par une nouvelle version.

@@ -1,0 +1,1122 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Les solutions électrolytiques — 1 Bac</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+/* Plan : un seul monde visuel sombre « vue microscopique » ; colonne de lecture unique, sections numérotées = parties du cours */
+:root{
+  --bg:#0a1222; --panel:#111c33; --panel2:#17243f; --line:#26375c;
+  --ink:#e8edf6; --muted:#9aa8c3;
+  --accent:#f5b544;      /* ambre : titres, étapes */
+  --cat:#38bdf8;         /* cations */
+  --an:#22c55e;          /* anions */
+  --oxy:#f0544f;         /* oxygène */
+  --ok:#34d399; --bad:#f87171;
+  --fd:"Sora", "Segoe UI", system-ui, sans-serif;
+  --fb:"Source Sans 3", "Segoe UI", system-ui, sans-serif;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--fb);font-size:17px;line-height:1.55}
+a{color:var(--accent)}
+h1,h2,h3{font-family:var(--fd);text-wrap:balance;margin:0}
+.wrap{max-width:760px;margin:0 auto;padding:0 16px}
+header{padding:28px 0 18px;border-bottom:1px solid var(--line);background:radial-gradient(120% 80% at 80% 0%,#16305a 0%,transparent 60%)}
+.level{font-family:var(--fd);font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);font-weight:700}
+h1{font-size:clamp(1.7rem,6vw,2.5rem);line-height:1.15;margin:.35rem 0 .5rem}
+.eqhead{font-family:var(--fd);font-weight:700;font-size:1.05rem}
+.eqhead .c{color:var(--cat)} .eqhead .a{color:var(--an)}
+.author{display:flex;gap:12px;align-items:center;margin-top:16px;padding:12px 14px;background:var(--panel);border:1px solid var(--line);border-radius:12px}
+.badge{flex:0 0 46px;height:46px;border-radius:50%;display:grid;place-items:center;font-family:var(--fd);font-weight:800;color:#0a1222;background:linear-gradient(135deg,var(--accent),#f08a3c)}
+.author b{display:block;font-family:var(--fd);font-size:1rem}
+.author span{color:var(--muted);font-size:.9rem;line-height:1.35;display:block}
+.sig{position:relative;margin-top:18px;padding:16px 16px 12px;border:1px solid #2b4a7c;border-radius:14px;overflow:hidden;
+  background:linear-gradient(180deg,#0c1a33 0%,#0e2142 100%)}
+.scan{position:absolute;inset:0;width:100%;height:100%;opacity:.9}
+.wave{fill:none;stroke:var(--cat);stroke-width:1.6;stroke-linejoin:round}
+.glow{stroke:var(--accent);stroke-width:2.4;stroke-dasharray:70 1400;stroke-dashoffset:0;filter:drop-shadow(0 0 4px var(--accent));animation:sweep 4.5s linear infinite}
+@keyframes sweep{from{stroke-dashoffset:0}to{stroke-dashoffset:-1470}}
+@media (prefers-reduced-motion:reduce){.glow{animation:none;display:none}}
+.sigtext{position:relative;padding:4px 10px;display:inline-block;background:rgba(10,18,34,.72);border-left:3px solid var(--accent);border-radius:6px;backdrop-filter:blur(2px)}
+.signame{font-family:var(--fd);font-weight:800;font-size:clamp(1.35rem,5.5vw,1.8rem);letter-spacing:.01em;line-height:1.1}
+.signame span{background:linear-gradient(90deg,var(--accent),#f08a3c);-webkit-background-clip:text;background-clip:text;color:transparent}
+.sigrole{color:#c9d4e8;font-size:.9rem;line-height:1.35;margin-top:4px}
+.sigtag{position:relative;margin-top:8px;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:#7f93b8;text-align:right}
+nav{position:sticky;top:0;z-index:5;background:rgba(10,18,34,.94);backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;gap:6px;overflow-x:auto;padding-top:8px;padding-bottom:8px}
+nav a{flex:0 0 auto;text-decoration:none;color:var(--ink);font-weight:600;font-size:.92rem;padding:6px 12px;border:1px solid var(--line);border-radius:999px;background:var(--panel)}
+nav a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+section{padding:28px 0 8px}
+h2{font-size:1.35rem;display:flex;gap:10px;align-items:baseline}
+h2 .n{color:var(--accent);font-size:1rem}
+h3{font-size:1.02rem;margin:18px 0 6px;color:var(--accent)}
+p{margin:.55rem 0}
+.box{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin:12px 0}
+.def{border-left:4px solid var(--accent)}
+.def b:first-child{color:var(--accent)}
+.figrow{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:12px 0}
+@media (max-width:520px){.figrow{grid-template-columns:1fr}}
+figure{margin:0;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:10px;text-align:center}
+figure svg{width:100%;height:auto;max-width:280px}
+figcaption{font-size:.88rem;color:var(--muted)}
+.cat{color:var(--cat);font-weight:700}.an{color:var(--an);font-weight:700}
+table{width:100%;border-collapse:collapse;font-size:.95rem}
+.tablewrap{overflow-x:auto;background:var(--panel);border:1px solid var(--line);border-radius:12px;margin:12px 0}
+th,td{padding:9px 12px;text-align:left;border-bottom:1px solid var(--line);white-space:nowrap}
+th{font-family:var(--fd);font-size:.8rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
+tr:last-child td{border-bottom:0}
+.formula{font-family:var(--fd);font-weight:600;font-size:1.05rem;text-align:center;padding:10px;background:var(--panel2);border-radius:10px;margin:10px 0}
+
+/* Simulation */
+.sim{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:12px;margin:14px 0}
+.simtop{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:8px}
+.simtitle{font-family:var(--fd);font-weight:700;font-size:.95rem}
+.simtitle small{display:block;color:var(--muted);font-family:var(--fb);font-weight:400}
+.seg{display:flex;border:1px solid var(--line);border-radius:999px;overflow:hidden}
+.seg button{border:0;background:transparent;color:var(--ink);font:600 .9rem var(--fb);padding:6px 12px;cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--accent);color:#0a1222}
+.canvasbox{position:relative;border-radius:12px;overflow:hidden;border:1px solid #2b4a7c;background:#0c1a33}
+canvas{display:block;width:100%;aspect-ratio:1/1}
+.scale{position:absolute;right:10px;top:8px;font-size:.72rem;color:#7f93b8;letter-spacing:.04em}
+.legend{position:absolute;left:10px;top:8px;font-size:.72rem;color:#b6c3dc;line-height:1.5}
+.caption{text-align:center;font-family:var(--fd);font-weight:700;margin:10px 0 8px;min-height:1.5em}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.steps button{border:1px solid var(--line);background:var(--panel2);color:var(--ink);border-radius:999px;padding:8px 4px;font:700 .86rem var(--fd);cursor:pointer}
+.steps button.on[data-s="0"]{background:var(--accent);color:#0a1222;border-color:var(--accent)}
+.steps button.on[data-s="1"]{background:var(--cat);color:#0a1222;border-color:var(--cat)}
+.steps button.on[data-s="2"]{background:var(--an);color:#0a1222;border-color:var(--an)}
+.bars{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;height:120px;align-items:end;margin:14px 4px 4px;border-bottom:1px solid var(--line);position:relative}
+.bar{display:flex;flex-direction:column;justify-content:flex-end;align-items:center;height:100%}
+.bar .v{font-family:var(--fd);font-weight:700;font-size:.95rem;font-variant-numeric:tabular-nums}
+.bar .f{width:70%;border-radius:6px 6px 0 0;min-height:2px}
+.barlab{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;text-align:center;font-family:var(--fd);font-weight:700;font-size:.85rem;margin-top:4px}
+.ctrls{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:12px}
+.btn{border:1px solid var(--line);background:var(--panel2);color:var(--ink);border-radius:10px;padding:8px 14px;font:700 .92rem var(--fb);cursor:pointer}
+.btn.primary{background:var(--accent);color:#0a1222;border-color:var(--accent)}
+.ctrls label{font-size:.9rem;color:var(--muted);display:flex;align-items:center;gap:6px}
+.bilan{font-size:.95rem;margin-top:10px;padding:8px 10px;background:var(--panel2);border-radius:10px}
+
+/* Calculateur */
+.calc{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+@media (max-width:520px){.calc{grid-template-columns:1fr 1fr}.calc .full{grid-column:1/-1}}
+.calc label{display:flex;flex-direction:column;font-size:.85rem;color:var(--muted);gap:4px}
+input,select{background:var(--panel2);color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:8px;font:600 1rem var(--fb);width:100%}
+.res{margin-top:12px;display:grid;gap:6px;font-variant-numeric:tabular-nums}
+.res .line{display:flex;justify-content:space-between;gap:10px;padding:7px 10px;background:var(--panel2);border-radius:8px;flex-wrap:wrap}
+.res .line b{font-family:var(--fd)}
+.okline{color:var(--ok);font-weight:700}
+details{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:10px 14px;margin:12px 0}
+summary{cursor:pointer;font-weight:700;color:var(--accent)}
+
+/* Quiz */
+.q{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin:10px 0}
+.q p{font-weight:700;margin:0 0 8px}
+.opts{display:grid;gap:6px}
+.opts button{text-align:left;border:1px solid var(--line);background:var(--panel2);color:var(--ink);border-radius:8px;padding:8px 10px;font:600 .95rem var(--fb);cursor:pointer}
+.opts button.good{border-color:var(--ok);background:rgba(52,211,153,.15)}
+.opts button.wrong{border-color:var(--bad);background:rgba(248,113,113,.15)}
+.ex{font-size:.92rem;color:var(--muted);margin-top:8px;display:none}
+.q.done .ex{display:block}
+.score{font-family:var(--fd);font-weight:700;font-size:1.1rem;color:var(--accent)}
+footer{margin-top:30px;padding:22px 0 40px;border-top:1px solid var(--line);color:var(--muted);font-size:.9rem;text-align:center}
+footer b{color:var(--ink)}
+@media (prefers-reduced-motion:reduce){*{scroll-behavior:auto}}
+
+/* ===== Habillage créatif ===== */
+:root{
+  --bg:#0e0b27; --panel:rgba(255,255,255,.055); --panel2:rgba(255,255,255,.08); --line:rgba(255,255,255,.13);
+  --ink:#f3f1ff; --muted:#b4b0d6;
+  --accent:#ffb347; --accent2:#ff5e7e;
+  --cat:#4cc9f0; --an:#4ade80;
+  --sc:var(--accent);
+}
+html,body{background:var(--bg)}
+body{background:
+  radial-gradient(60% 40% at 0% 0%,rgba(124,58,237,.35),transparent 70%),
+  radial-gradient(50% 40% at 100% 30%,rgba(14,165,233,.22),transparent 70%),
+  radial-gradient(60% 50% at 50% 100%,rgba(236,72,153,.18),transparent 70%),
+  var(--bg);background-attachment:fixed}
+#solide{--sc:#ffb347} #polaire{--sc:#ff7aa8} #simulation{--sc:#4cc9f0} #concentration{--sc:#b794f6} #exercices{--sc:#4ade80} #quiz{--sc:#fcd34d}
+header{position:relative;overflow:hidden;background:transparent;border-bottom:0}
+#bgions{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:.32}
+header .wrap{position:relative}
+h1{background:linear-gradient(90deg,#fff 0%,#ffd59a 45%,#ff8fa3 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.level{color:#ffd59a}
+nav{background:rgba(14,11,39,.85);border-bottom:1px solid var(--line)}
+nav .wrap{scrollbar-width:none}nav .wrap::-webkit-scrollbar{display:none}
+nav a{background:rgba(255,255,255,.06);transition:background .25s,transform .25s}
+nav a:hover{background:rgba(255,255,255,.14);transform:translateY(-1px)}
+#revise{flex:0 0 auto;border:1px solid #ff8fa3;background:linear-gradient(90deg,rgba(255,179,71,.2),rgba(255,94,126,.25));color:#fff;font:700 .9rem var(--fb);padding:6px 12px;border-radius:999px;cursor:pointer}
+#revise[aria-pressed="true"]{background:linear-gradient(90deg,var(--accent),var(--accent2));color:#1a0f2e}
+section{padding-top:36px}
+h2{font-size:1.4rem;align-items:center;padding-bottom:10px;margin-bottom:6px;border-bottom:2px solid transparent;
+  border-image:linear-gradient(90deg,var(--sc),transparent 80%) 1}
+h2 .n{flex:0 0 auto;min-width:44px;height:44px;padding:0 8px;border-radius:14px;display:grid;place-items:center;
+  font-size:1rem;color:#160f2e;background:linear-gradient(135deg,var(--sc),color-mix(in srgb,var(--sc) 55%,#ff5e7e));
+  box-shadow:0 6px 20px color-mix(in srgb,var(--sc) 45%,transparent);transform:rotate(-4deg)}
+h3{color:var(--sc)}
+.box,figure,.tablewrap,.sim,details,.q{background:var(--panel);border-color:var(--line);backdrop-filter:blur(6px);transition:transform .3s,box-shadow .3s}
+.box:hover,figure:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(0,0,0,.25)}
+.def{border-left:4px solid var(--sc);background:linear-gradient(90deg,color-mix(in srgb,var(--sc) 14%,transparent),var(--panel) 60%)}
+.def b{color:color-mix(in srgb,var(--sc) 70%,#fff)}
+.formula{position:relative;background:linear-gradient(var(--bg),var(--bg)) padding-box,linear-gradient(90deg,var(--sc),#ff5e7e) border-box;
+  border:2px solid transparent;border-radius:12px;font-size:1.12rem;letter-spacing:.01em}
+.formula small{font-size:.65em;color:var(--muted);vertical-align:super}
+summary{color:var(--sc)}
+.btn.primary{background:linear-gradient(90deg,var(--accent),var(--accent2));border:0;color:#1a0f2e}
+.canvasbox{border-color:rgba(76,201,240,.4);box-shadow:0 0 40px rgba(76,201,240,.12)}
+footer{border-top:1px solid var(--line)}
+/* apparition au défilement */
+.rv{opacity:0;transform:translateY(26px) scale(.98);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.2,1)}
+.rv.in{opacity:1;transform:none}
+/* mode révision */
+body.revise .def b,body.revise .formula{filter:blur(7px);cursor:pointer;user-select:none;transition:filter .35s}
+body.revise .def b.shown,body.revise .formula.shown{filter:none}
+#revbar{display:none;position:fixed;left:50%;bottom:14px;transform:translateX(-50%);z-index:9;padding:8px 14px;border-radius:999px;
+  background:linear-gradient(90deg,var(--accent),var(--accent2));color:#1a0f2e;font:700 .9rem var(--fd);box-shadow:0 8px 24px rgba(0,0,0,.35)}
+body.revise #revbar{display:block}
+@media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}.box:hover,figure:hover{transform:none}}
+
+/* ===== Fond aurore + animations + cartes à révéler ===== */
+html,body{background:#0b0920}
+body{background:#0b0920}
+.aurora{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.aurora i{position:absolute;width:70vmax;height:70vmax;border-radius:50%;filter:blur(70px);opacity:.45;mix-blend-mode:screen}
+.aurora i:nth-child(1){background:#7c3aed;left:-30vmax;top:-25vmax;animation:d1 18s ease-in-out infinite alternate}
+.aurora i:nth-child(2){background:#0ea5e9;right:-35vmax;top:20vh;animation:d2 22s ease-in-out infinite alternate}
+.aurora i:nth-child(3){background:#ec4899;left:-10vmax;bottom:-45vmax;animation:d3 26s ease-in-out infinite alternate}
+@keyframes d1{to{transform:translate(25vmax,20vmax) scale(1.15)}}
+@keyframes d2{to{transform:translate(-20vmax,25vmax) scale(.9)}}
+@keyframes d3{to{transform:translate(20vmax,-25vmax) scale(1.1)}}
+.aurora::after{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.14) 1px,transparent 1.4px);background-size:22px 22px;
+  -webkit-mask-image:linear-gradient(180deg,#000,rgba(0,0,0,.35));mask-image:linear-gradient(180deg,#000,rgba(0,0,0,.35))}
+#bgions{position:fixed;inset:0;z-index:0;opacity:.22}
+header,main,footer{position:relative;z-index:1}
+nav{z-index:6}
+/* badges qui flottent */
+h2 .n{animation:bob 3.2s ease-in-out infinite}
+@keyframes bob{0%,100%{transform:rotate(-4deg) translateY(0)}50%{transform:rotate(3deg) translateY(-4px)}}
+/* bordure des formules animée */
+.formula{background:linear-gradient(#120e2b,#120e2b) padding-box,linear-gradient(90deg,var(--sc),#ff5e7e,var(--sc)) border-box;background-size:100% 100%,200% 100%;animation:flow 4s linear infinite}
+@keyframes flow{to{background-position:0 0,200% 0}}
+/* molécules animées */
+.mol-sway{transform-origin:50% 65%;animation:sway 3s ease-in-out infinite}
+@keyframes sway{0%,100%{transform:rotate(-5deg)}50%{transform:rotate(5deg)}}
+figure svg text[fill="#f5b544"]{animation:glowd 1.8s ease-in-out infinite}
+@keyframes glowd{0%,100%{opacity:.55}50%{opacity:1}}
+.doublet{animation:dbl 2.2s ease-in-out infinite alternate}
+@keyframes dbl{from{transform:translateX(86px)}to{transform:translateX(106px)}}
+#lattice circle{transform-box:fill-box;transform-origin:center;animation:vib 1.4s ease-in-out infinite alternate}
+#lattice circle:nth-child(4n){animation-delay:-.4s}#lattice circle:nth-child(4n+2){animation-delay:-.9s}
+@keyframes vib{to{transform:scale(1.12)}}
+/* cartes « Révéler » */
+details.rq{padding:0;margin:12px 0;border:1px dashed color-mix(in srgb,var(--sc) 70%,transparent);border-radius:14px;
+  background:linear-gradient(135deg,color-mix(in srgb,var(--sc) 12%,transparent),rgba(255,255,255,.04))}
+.rq summary{list-style:none;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 14px;cursor:pointer;color:var(--ink);font-weight:700}
+.rq summary::-webkit-details-marker{display:none}
+.rq summary::before{content:"?";flex:0 0 28px;height:28px;border-radius:50%;display:grid;place-items:center;font:800 .95rem var(--fd);color:#160f2e;background:var(--sc)}
+.rq summary span{flex:1}
+.rq summary::after{content:"Révéler ▾";flex:0 0 auto;font:700 .78rem var(--fd);padding:6px 11px;border-radius:999px;
+  background:linear-gradient(90deg,var(--sc),#ff5e7e);color:#160f2e;animation:ping 1.8s infinite}
+.rq[open] summary::after{content:"Réponse ✓";animation:none;background:rgba(255,255,255,.14);color:var(--ink)}
+.rq[open] summary::before{content:"!"}
+.rq .ans{margin:0 14px 14px;padding:10px 12px;border-radius:10px;background:rgba(0,0,0,.25);border-left:3px solid var(--sc);animation:pop .5s cubic-bezier(.2,.8,.2,1.2)}
+@keyframes pop{from{opacity:0;transform:translateY(-10px) scale(.96)}}
+@keyframes ping{0%,100%{box-shadow:0 0 0 0 rgba(255,94,126,.55)}60%{box-shadow:0 0 0 9px rgba(255,94,126,0)}}
+#exercices details summary{font-size:1rem}
+#exercices details[open]>p{animation:pop .5s ease both}
+@media (prefers-reduced-motion:reduce){.aurora i,h2 .n,.formula,.mol-sway,figure svg text,.doublet,#lattice circle,.rq summary::after,.rq .ans{animation:none!important}}
+
+/* ===== Exercices ===== */
+.exo{margin:16px 0;border:1px solid var(--line);border-radius:18px;overflow:hidden;background:rgba(18,14,43,.72);backdrop-filter:blur(8px)}
+.exo-head{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:14px 16px;
+  background:linear-gradient(110deg,color-mix(in srgb,var(--sc) 38%,transparent),rgba(255,94,126,.18) 70%,transparent)}
+.exo-head small{display:block;font:700 .72rem var(--fd);letter-spacing:.12em;text-transform:uppercase;color:color-mix(in srgb,var(--sc) 70%,#fff)}
+.exo-head b{font-family:var(--fd);font-size:1.08rem;line-height:1.25}
+.tot{flex:0 0 auto;font:800 .85rem var(--fd);padding:6px 12px;border-radius:999px;background:var(--sc);color:#130d29}
+.ctx{margin:12px 16px;padding:10px 12px;border-left:3px solid var(--sc);background:rgba(255,255,255,.04);border-radius:0 10px 10px 0}
+.part{margin:16px 16px 4px;font:700 .8rem var(--fd);letter-spacing:.1em;text-transform:uppercase;color:var(--sc)}
+ol.qs{list-style:none;margin:0;padding:0 16px}
+ol.qs li{display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:start;padding:10px 0;border-top:1px dashed var(--line)}
+ol.qs li:first-child{border-top:0}
+.qn{min-width:38px;height:26px;padding:0 6px;border-radius:8px;display:grid;place-items:center;font:800 .8rem var(--fd);color:#130d29;background:linear-gradient(135deg,var(--sc),color-mix(in srgb,var(--sc) 50%,#ff5e7e))}
+.pt{font-size:.74rem;font-weight:700;color:var(--muted);white-space:nowrap;padding:3px 8px;border:1px solid var(--line);border-radius:999px;margin-top:2px}
+.data{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:12px 16px;padding:10px 12px;border-radius:12px;background:rgba(255,255,255,.05)}
+.data b{font-family:var(--fd);font-size:.85rem;color:var(--sc);margin-right:4px}
+.chip{background:rgba(255,255,255,.09);border-radius:8px;padding:4px 10px;font-size:.88rem;font-variant-numeric:tabular-nums}
+details.corr{margin:14px 16px 16px;padding:0;border:0;background:transparent;backdrop-filter:none}
+details.corr summary{list-style:none;display:inline-flex;align-items:center;gap:8px;padding:9px 16px;border-radius:999px;cursor:pointer;
+  font:700 .92rem var(--fd);color:#130d29;background:linear-gradient(90deg,var(--sc),#ff5e7e)}
+details.corr summary::-webkit-details-marker{display:none}
+details.corr summary::after{content:"▾"}
+details.corr[open] summary::after{content:"▴"}
+.sol{margin-top:12px;display:grid;gap:10px;animation:pop .5s ease}
+.sl{display:grid;grid-template-columns:auto 1fr;gap:10px;align-items:start;padding:10px 12px;border-radius:12px;background:rgba(255,255,255,.05)}
+.hl{display:inline-block;padding:1px 8px;border-radius:6px;font-weight:700;background:color-mix(in srgb,var(--sc) 22%,transparent);color:#fff;border:1px solid color-mix(in srgb,var(--sc) 50%,transparent)}
+.mols{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:10px 16px 0}
+.m3d{padding:6px;background:radial-gradient(circle at 50% 40%,rgba(255,255,255,.08),rgba(0,0,0,.25));border-radius:14px}
+.m3d canvas{display:block;width:100%;aspect-ratio:1/1;touch-action:none;cursor:grab}
+.m3d canvas:active{cursor:grabbing}
+.m3dctl{display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px;margin:6px 16px 4px;font-size:.85rem;color:var(--muted)}
+.m3dctl label{display:flex;align-items:center;gap:6px;color:var(--ink);font-weight:600}
+.m3dctl input{width:auto}
+@media (max-width:360px){ol.qs li{grid-template-columns:auto 1fr}ol.qs li .pt{grid-column:2;justify-self:start}}
+
+/* lisibilité */
+body{font-size:18px;line-height:1.65}
+main p{color:#f1effc}
+.box,.tablewrap,figure{background:rgba(20,16,48,.82)}
+.def{background:linear-gradient(90deg,color-mix(in srgb,var(--sc) 18%,rgba(20,16,48,.9)),rgba(20,16,48,.9) 65%)}
+h3{font-size:1.1rem;margin-top:24px;padding-left:10px;border-left:3px solid var(--sc)}
+td b{color:color-mix(in srgb,var(--sc) 60%,#fff)}
+
+.jetgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px;align-items:start}
+@media (max-width:560px){.jetgrid{grid-template-columns:1fr}}
+.jsteps{list-style:none;counter-reset:st;margin:0;padding:0;display:grid;gap:8px}
+.jsteps li{counter-increment:st;display:grid;grid-template-columns:30px 1fr;gap:10px;align-items:start;padding:9px 10px;border-radius:12px;
+  background:rgba(255,255,255,.05);border:1px solid var(--line);font-size:.95rem;line-height:1.45;transition:background .4s,border-color .4s,transform .4s}
+.jsteps li::before{content:counter(st);width:28px;height:28px;border-radius:50%;display:grid;place-items:center;font:800 .85rem var(--fd);
+  background:rgba(255,255,255,.12);color:var(--ink);transition:background .4s}
+.jsteps li.done::before{content:"✓";background:#4ade80;color:#0e0b27}
+.jsteps li.now{background:color-mix(in srgb,var(--sc) 20%,transparent);border-color:var(--sc);transform:translateX(4px)}
+.jsteps li.now::before{background:var(--sc);color:#0e0b27}
+</style>
+</head>
+<body>
+
+<div class="aurora" aria-hidden="true"><i></i><i></i><i></i></div>
+<canvas id="bgions" aria-hidden="true"></canvas>
+<header>
+  <div class="wrap">
+    <div class="level">1<sup>ère</sup> année Bac Sciences Expérimentales · Chimie</div>
+    <h1>Concentration et solutions électrolytiques</h1>
+    <div class="eqhead">NaCl(s) → <span class="c">Na⁺(aq)</span> + <span class="a">Cl⁻(aq)</span></div>
+    <div class="sig">
+      <svg class="scan" viewBox="0 0 600 90" preserveAspectRatio="none" aria-hidden="true">
+        <line x1="0" y1="45" x2="600" y2="45" stroke="#26375c" stroke-width="1"/>
+        <path id="echo" class="wave" d=""/>
+        <path id="echo2" class="wave glow" d=""/>
+      </svg>
+      <div class="sigtext">
+        <div class="signame">Hicham <span>MESBAH</span></div>
+        <div class="sigrole">Docteur en Électronique, traitement du signal<br>et contrôle non destructif</div>
+      </div>
+      <div class="sigtag">signal pulse-écho · ultrasons</div>
+    </div>
+  </div>
+</header>
+
+<nav aria-label="Sommaire">
+  <div class="wrap">
+    <a href="#solide">I · Solide ionique</a>
+    <a href="#polaire">II · Molécule dipolaire</a>
+    <a href="#simulation">III · Solutions électrolytiques</a>
+    <a href="#concentration">IV · Concentrations</a>
+    <a href="#exercices">V · Exercices</a>
+    <a href="#quiz">VI · Quiz</a>
+    <button id="revise" aria-pressed="false">Mode révision</button>
+  </div>
+</nav>
+
+<main class="wrap">
+
+<div style="margin-top:24px">
+  <p><b style="color:var(--accent)">Introduction</b> : l'eau de mer conduit le courant électrique. Pourquoi ?</p>
+  <details class="rq"><summary><span>Qu'est-ce qu'une solution électrolytique ?</span></summary><div class="ans">Une solution qui contient des ions et qui conduit le courant électrique.</div></details>
+  <details class="rq"><summary><span>Quels sont ses constituants ?</span></summary><div class="ans">Le solvant (l'eau) et des ions hydratés : des cations et des anions.</div></details>
+  <details class="rq"><summary><span>Comment calculer leurs concentrations ?</span></summary><div class="ans">Avec C = n/V pour le soluté apporté, puis [X] = n(X)/V pour chaque ion, à partir de l'équation de dissolution.</div></details>
+</div>
+
+<section id="solide">
+  <h2><span class="n">I</span>Le solide ionique</h2>
+  <div class="box def">
+    <p style="margin-top:0">Un <b>solide ionique</b> (cristal ionique) est constitué de <span class="cat">cations</span> et d'<span class="an">anions</span> régulièrement disposés dans l'espace.</p>
+    <p>• Sa cohésion est assurée par les <b>interactions électriques</b> entre anions et cations (loi de Coulomb).<br>
+    • Il est <b>électriquement neutre</b>.<br>
+    • Le solide formé des ions X<sup>a+</sup> et Y<sup>b−</sup> a pour formule statistique <b>X<sub>b</sub>Y<sub>a</sub></b>.</p>
+  </div>
+  <div class="figrow">
+    <figure>
+      <svg viewBox="0 0 200 150" role="img" aria-label="Cristal de chlorure de sodium"><g id="lattice"></g></svg>
+      <figcaption>NaCl : chaque Na⁺ est entouré de 6 Cl⁻ et inversement</figcaption>
+    </figure>
+    <div class="tablewrap" style="margin:0"><table>
+      <tr><th>Cristal</th><th>Ions</th><th>Formule</th></tr>
+      <tr><td>Chlorure de sodium</td><td>Na⁺ ; Cl⁻</td><td><b>NaCl</b></td></tr>
+      <tr><td>Fluorure de calcium</td><td>Ca²⁺ ; F⁻</td><td><b>CaF₂</b></td></tr>
+      <tr><td>Chlorure d'aluminium</td><td>Al³⁺ ; Cl⁻</td><td><b>AlCl₃</b></td></tr>
+    </table></div>
+  </div>
+  <details class="rq"><summary><span>Quelle est la formule du solide formé des ions Al³⁺ et SO₄²⁻ ?</span></summary><div class="ans">Il faut 2 Al³⁺ (6 charges +) pour 3 SO₄²⁻ (6 charges −) : <b>Al₂(SO₄)₃</b>.</div></details>
+</section>
+
+<section id="polaire">
+  <h2><span class="n">II</span>Caractère dipolaire d'une molécule</h2>
+  <h3>1- Liaison covalente polarisée et électronégativité</h3>
+  <div class="box def">
+    <p style="margin-top:0">L'<b>électronégativité</b> est l'aptitude d'un atome à attirer vers lui le doublet d'électrons de la liaison covalente.</p>
+    <p style="margin-bottom:0">Une liaison entre deux atomes <b>différents</b> est <b>polarisée</b> : l'atome le plus électronégatif porte une charge partielle <b>δ−</b>, l'autre une charge partielle <b>δ+</b>.</p>
+  </div>
+  <p><b>Remarque :</b> dans le tableau périodique, l'électronégativité augmente de gauche à droite sur une période et de bas en haut dans un groupe.</p>
+
+  <h3>2- Molécules dipolaires</h3>
+  <div class="box def"><p style="margin:0">Une molécule est <b>dipolaire (polaire)</b> si :<br>
+  • elle possède au moins une liaison polarisée ;<br>
+  • le barycentre des charges δ+ <b>ne coïncide pas</b> avec celui des charges δ−.</p></div>
+  <div class="figrow">
+    <figure>
+      <svg viewBox="0 0 200 120" role="img" aria-label="Molécule HCl polaire">
+        <line x1="70" y1="62" x2="120" y2="62" stroke="#9aa8c3" stroke-width="4"/>
+        <circle cx="68" cy="62" r="14" fill="#f1f5f9"/>
+        <circle cx="126" cy="62" r="24" fill="#22c55e"/>
+        <text x="68" y="67" text-anchor="middle" font-size="13" font-weight="700" fill="#0a1222">H</text>
+        <text x="126" y="68" text-anchor="middle" font-size="16" font-weight="700" fill="#0a1222">Cl</text>
+        <g class="doublet"><circle cx="0" cy="56" r="3.2" fill="#ffe08a"/><circle cx="0" cy="68" r="3.2" fill="#ffe08a"/></g>
+        <text x="68" y="32" text-anchor="middle" font-size="15" font-weight="700" fill="#f5b544">δ+</text>
+        <text x="126" y="24" text-anchor="middle" font-size="15" font-weight="700" fill="#f5b544">δ−</text>
+      </svg>
+      <figcaption>a- HCl : Cl plus électronégatif que H → molécule dipolaire</figcaption>
+    </figure>
+    <figure>
+      <svg viewBox="0 0 200 120" role="img" aria-label="Molécule d'eau coudée et polaire"><g class="mol-sway">
+        <line x1="100" y1="78" x2="62" y2="46" stroke="#9aa8c3" stroke-width="4"/>
+        <line x1="100" y1="78" x2="138" y2="46" stroke="#9aa8c3" stroke-width="4"/>
+        <circle cx="100" cy="78" r="22" fill="#f0544f"/>
+        <circle cx="60" cy="44" r="13" fill="#f1f5f9"/>
+        <circle cx="140" cy="44" r="13" fill="#f1f5f9"/>
+        <text x="100" y="84" text-anchor="middle" font-size="16" font-weight="700" fill="#0a1222">O</text>
+        <text x="60" y="49" text-anchor="middle" font-size="12" font-weight="700" fill="#0a1222">H</text>
+        <text x="140" y="49" text-anchor="middle" font-size="12" font-weight="700" fill="#0a1222">H</text>
+        <text x="40" y="22" font-size="14" font-weight="700" fill="#f5b544">δ+</text>
+        <text x="146" y="22" font-size="14" font-weight="700" fill="#f5b544">δ+</text>
+        <text x="100" y="116" text-anchor="middle" font-size="14" font-weight="700" fill="#f5b544">2δ−</text>
+      </g></svg>
+      <figcaption>b- H₂O : molécule coudée → dipolaire. L'eau est un <b>solvant polaire</b></figcaption>
+    </figure>
+  </div>
+  <p><b>Expérience d'électrisation :</b> elle met en évidence le caractère dipolaire de la molécule d'eau.</p>
+  <div class="sim">
+    <div class="simtop"><div class="simtitle">Expérience d'électrisation<small>Pr Hicham MESBAH</small></div></div>
+    <div class="jetgrid">
+      <div class="canvasbox"><canvas id="elec" style="aspect-ratio:36/38" aria-label="Animation de l'expérience d'électrisation d'un filet d'eau"></canvas></div>
+      <ol class="jsteps" id="esteps"><li><span><b>Remplir</b> une burette d'eau et ouvrir le robinet : un mince filet d'eau s'écoule dans le bécher.</span></li><li><span><b>Frotter</b> un tube en plastique avec un chiffon en laine : le tube s'électrise.</span></li><li><span><b>Approcher</b> le tube frotté du filet d'eau, sans le toucher.</span></li><li><span><b>Observer :</b> le filet d'eau est dévié vers le tube.</span></li></ol>
+    </div>
+    <div class="caption" id="ecap"></div>
+    <div class="ctrls"><button class="btn primary" id="erub">1 · Frotter le tube</button><button class="btn primary" id="eapp">2 · Approcher le tube</button><button class="btn" id="ereset">↺ Recommencer</button></div>
+    <div class="bilan" id="eexp">Essaie aussi d'approcher le tube sans le frotter : que se passe-t-il ?</div>
+  </div>
+  <p><b>Remarque :</b> CH₄ et CO₂ ont des liaisons polarisées mais sont <b>non polaires</b> car leur géométrie est symétrique (les barycentres des charges coïncident).</p>
+  <details class="rq"><summary><span>La molécule NH₃ est-elle polaire ?</span></summary><div class="ans">Oui : les liaisons N–H sont polarisées et la molécule est pyramidale, donc les barycentres des charges ne coïncident pas.</div></details>
+  <details class="rq"><summary><span>Pourquoi CO₂ n'est-elle pas polaire ?</span></summary><div class="ans">Elle est linéaire et symétrique : le barycentre des charges δ+ coïncide avec celui des charges δ−.</div></details>
+</section>
+
+<section id="simulation">
+  <h2><span class="n">III</span>Solutions aqueuses électrolytiques</h2>
+  <h3>1- Définitions</h3>
+  <div class="box def"><p style="margin:0">
+  • Une solution s'obtient en dissolvant un <b>soluté</b> (solide, liquide ou gaz) dans un <b>solvant</b>. Si le solvant est l'eau, la solution est <b>aqueuse</b>.<br>
+  • Une <b>solution électrolytique</b> contient des ions : elle conduit le courant électrique.<br>
+  • Un corps qui donne une solution électrolytique est un <b>électrolyte</b>.</p></div>
+  <p><b>Symbole d'une solution :</b></p>
+  <div class="tablewrap"><table>
+    <tr><td>Chlorure de sodium</td><td><b>(Na⁺(aq) + Cl⁻(aq))</b></td></tr>
+    <tr><td>Sulfate de cuivre II</td><td><b>(Cu²⁺(aq) + SO₄²⁻(aq))</b></td></tr>
+    <tr><td>Acide sulfurique</td><td><b>(2H⁺(aq) + SO₄²⁻(aq))</b></td></tr>
+  </table></div>
+
+  <h3>2- Dissolution d'un électrolyte dans l'eau</h3>
+  <p>La dissolution se fait en <b>trois étapes</b> :</p>
+  <div class="box def"><p style="margin:0">
+  <b>a- Dissociation :</b> les cations sont attirés par les pôles δ− de l'eau et les anions par les pôles δ+. Les ions quittent le cristal.</p></div>
+  <div class="box def"><p style="margin:0">
+  <b>b- Solvatation (hydratation) :</b> chaque ion s'entoure de molécules d'eau. On note les ions hydratés : Na⁺(aq), Cl⁻(aq).</p></div>
+  <div class="box def"><p style="margin:0">
+  <b>c- Dispersion :</b> les ions hydratés se répartissent dans toute la solution, qui devient homogène.</p></div>
+
+<div class="sim">
+    <div class="simtop">
+      <div class="simtitle">Simulation de dissolution<small>Pr Hicham MESBAH</small></div>
+      <div class="seg" role="group" aria-label="Choix du solide">
+        <button id="bNaCl" aria-pressed="true">NaCl</button>
+        <button id="bCuCl2" aria-pressed="false">CuCl₂</button>
+      </div>
+    </div>
+    <div class="canvasbox">
+      <canvas id="cv" aria-label="Animation de la dissolution d'un solide ionique dans l'eau"></canvas>
+      <div class="scale">VUE MICROSCOPIQUE ≈ 10⁻⁹ m</div>
+      <div class="legend" id="leg"></div>
+    </div>
+    <div class="caption" id="cap">L'eau polaire arrache les ions du cristal</div>
+    <div class="steps">
+      <button data-s="0" class="on">1 Dissociation</button>
+      <button data-s="1">2 Hydratation</button>
+      <button data-s="2">3 Dispersion</button>
+    </div>
+    <div class="bars">
+      <div class="bar"><span class="v" id="v0">0 %</span><div class="f" id="f0" style="background:var(--accent)"></div></div>
+      <div class="bar"><span class="v" id="v1">0 %</span><div class="f" id="f1" style="background:var(--cat)"></div></div>
+      <div class="bar"><span class="v" id="v2">0 %</span><div class="f" id="f2" style="background:var(--an)"></div></div>
+    </div>
+    <div class="barlab"><span style="color:var(--accent)">Dissociés</span><span style="color:var(--cat)">Hydratés</span><span style="color:var(--an)">Dispersés</span></div>
+    <div class="ctrls">
+      <button class="btn primary" id="play">⏸ Pause</button>
+      <button class="btn" id="reset">↺ Recommencer</button>
+      <label for="speed">Vitesse <input type="range" id="speed" min="0.3" max="2" step="0.1" value="1" style="width:110px"></label>
+      <label for="freew"><input type="checkbox" id="freew" checked style="width:auto"> Eau libre</label>
+    </div>
+    <div class="bilan" id="bilan"></div>
+  </div>
+
+  <p>L'équation de dissolution du chlorure de sodium dans l'eau s'écrit :</p>
+  <div class="formula">NaCl(s) <small>eau</small>→ Na⁺(aq) + Cl⁻(aq)</div>
+  <p><b>Cas particulier :</b> l'ion hydrogène hydraté se note H⁺(aq) ou H₃O⁺(aq) (ion oxonium).</p>
+
+  <h3>3- Dissolution de composés moléculaires</h3>
+  <p><b>a- Chlorure d'hydrogène (gaz) :</b> il est très soluble dans l'eau, comme le montre l'expérience du jet d'eau. Lors de la dissolution, la liaison H–Cl se casse et des ions apparaissent.</p>
+  <div class="sim">
+    <div class="simtop"><div class="simtitle">Expérience du jet d'eau<small>Pr Hicham MESBAH</small></div></div>
+    <div class="jetgrid">
+      <div class="canvasbox"><canvas id="jet" style="aspect-ratio:9/10" aria-label="Animation de l'expérience du jet d'eau avec le chlorure d'hydrogène"></canvas></div>
+      <ol class="jsteps" id="jsteps">
+        <li><span><b>Remplir</b> un ballon sec de chlorure d'hydrogène gazeux HCl(g).</span></li>
+        <li><span><b>Fermer</b> le ballon avec un bouchon traversé par un tube effilé.</span></li>
+        <li><span><b>Retourner</b> le ballon et plonger le tube dans une cuve d'eau contenant quelques gouttes de BBT (bleu).</span></li>
+        <li><span><b>Attendre :</b> quelques gouttes d'eau montent dans le ballon, HCl s'y dissout et la pression baisse.</span></li>
+        <li><span><b>Observer :</b> l'eau jaillit en jet dans le ballon et devient jaune.</span></li>
+      </ol>
+    </div>
+    <div class="caption" id="jetcap"></div>
+    <div class="ctrls"><button class="btn primary" id="jetgo">▶ Lancer l'expérience</button><button class="btn" id="jetreset">↺ Recommencer</button></div>
+    <div class="bilan" id="jetexp">Observe la couleur de l'eau pendant l'expérience. Le BBT (bleu de bromothymol) est bleu dans l'eau et jaune en milieu acide.</div>
+  </div>
+  <p>L'équation de dissolution du chlorure d'hydrogène dans l'eau s'écrit :</p>
+  <div class="formula">HCl(g) <small>eau</small>→ H⁺(aq) + Cl⁻(aq)</div>
+  <p><b>b- Acide sulfurique (liquide) :</b> sa dissolution dans l'eau dégage de la chaleur, ce qui montre qu'il y a une réaction entre l'acide et l'eau.</p>
+  <div class="sim">
+    <div class="simtop"><div class="simtitle">Dissolution de l'acide sulfurique<small>Pr Hicham MESBAH</small></div></div>
+    <div class="jetgrid">
+      <div class="canvasbox"><canvas id="acid" style="aspect-ratio:36/38" aria-label="Animation de la dissolution de l'acide sulfurique dans l'eau"></canvas></div>
+      <ol class="jsteps" id="asteps"><li><span><b>Verser</b> de l'eau distillée dans un bécher et mesurer sa température θ₀ ≈ 20 °C.</span></li><li><span><b>Ajouter</b> lentement, goutte à goutte, quelques mL d'acide sulfurique concentré en agitant.</span></li><li><span><b>Observer</b> le thermomètre : la température augmente.</span></li></ol>
+    </div>
+    <div class="caption" id="acap"></div>
+    <div class="ctrls"><button class="btn primary" id="ago">▶ Ajouter l'acide</button><button class="btn" id="areset">↺ Recommencer</button></div>
+    <div class="bilan" id="aexp"><b>Sécurité :</b> porter des lunettes et des gants. Toujours verser l'acide dans l'eau, jamais l'inverse.</div>
+  </div>
+  <p>L'équation de dissolution de l'acide sulfurique dans l'eau s'écrit :</p>
+  <div class="formula">H₂SO₄(ℓ) <small>eau</small>→ 2H⁺(aq) + SO₄²⁻(aq)</div>
+  <details class="rq"><summary><span>Pourquoi l'eau distillée ne conduit-elle presque pas le courant ?</span></summary><div class="ans">Elle ne contient pratiquement pas d'ions mobiles.</div></details>
+  <details class="rq"><summary><span>Écrire l'équation de dissolution de FeCl₃ dans l'eau.</span></summary><div class="ans">FeCl₃(s) → Fe³⁺(aq) + 3 Cl⁻(aq)</div></details>
+</section>
+
+<section id="concentration">
+  <h2><span class="n">IV</span>Concentrations molaires</h2>
+  <h3>1- Concentration molaire du soluté apporté</h3>
+  <p>La concentration molaire C du soluté apporté est la quantité de matière de soluté dissoute par litre de solution :</p>
+  <div class="formula">C = n / V = m / (M·V)</div>
+  <p>C en mol/L ; n en mol ; V en L ; m en g ; M en g/mol.</p>
+
+  <h3>2- Concentration molaire effective d'un ion</h3>
+  <p>La concentration molaire effective [X] d'un ion X est la quantité de matière de cet ion réellement présente par litre de solution :</p>
+  <div class="formula">[X] = n(X) / V</div>
+  <p><b>Remarque :</b> [X] s'utilise seulement pour une espèce réellement présente. [NaCl] n'a pas de sens, car NaCl n'existe plus en solution.</p>
+  <p><b>Exemple :</b> chlorure de cuivre II de concentration C</p>
+  <div class="tablewrap"><table>
+    <tr><th>Équation</th><td>CuCl₂(s)</td><td>→ Cu²⁺(aq)</td><td>+ 2Cl⁻(aq)</td></tr>
+    <tr><th>Quantité apportée</th><td>n</td><td>0</td><td>0</td></tr>
+    <tr><th>Dans la solution</th><td>0</td><td>n</td><td>2n</td></tr>
+  </table></div>
+  <p><b>[Cu²⁺] = C</b> &nbsp;et&nbsp; <b>[Cl⁻] = 2C</b> &nbsp;donc&nbsp; [Cl⁻] = 2[Cu²⁺]</p>
+
+  <h3>3- Concentration massique</h3>
+  <p>La concentration massique Cm est la masse de soluté dissoute par litre de solution. Elle est liée à la concentration molaire par la relation :</p>
+  <div class="formula">Cm = m / V = C · M</div>
+
+  <h3>4- Mélange de deux solutions</h3>
+  <p>Quand on mélange une solution S₁ (volume V₁) et une solution S₂ (volume V₂), le volume total devient V₁ + V₂. La concentration d'un ion X dans le mélange est :</p>
+  <div class="formula">[X] = (n₁(X) + n₂(X)) / (V₁ + V₂)</div>
+  <p>avec n(X) = [X]·V dans chaque solution.</p>
+
+<details class="rq"><summary><span>Solution de Na₂SO₄ à C = 0,10 mol/L : que valent [Na⁺] et [SO₄²⁻] ?</span></summary><div class="ans">Na₂SO₄ → 2Na⁺ + SO₄²⁻ donc <b>[Na⁺] = 2C = 0,20 mol/L</b> et <b>[SO₄²⁻] = C = 0,10 mol/L</b>.</div></details>
+  <details class="rq"><summary><span>Quelle masse de NaCl (M = 58,5 g/mol) faut-il pour 250 mL à 0,20 mol/L ?</span></summary><div class="ans">m = C·V·M = 0,20 × 0,250 × 58,5 = <b>2,93 g</b></div></details>
+
+  <div class="sim">
+    <div class="simtitle" style="margin-bottom:10px">Calculateur de concentrations<small>Change les valeurs, les résultats se mettent à jour</small></div>
+    <div class="calc">
+      <label class="full" for="solute">Soluté
+        <select id="solute"></select>
+      </label>
+      <label for="mass">Masse m (g)<input id="mass" type="number" step="any" min="0" value="2.69"></label>
+      <label for="vol">Volume V (mL)<input id="vol" type="number" step="any" min="0" value="200"></label>
+    </div>
+    <div class="res" id="res"></div>
+  </div>
+</section>
+
+<section id="exercices">
+  <h2><span class="n">V</span>Exercices d'application</h2>
+
+  <article class="exo">
+    <div class="exo-head"><div><small>Exercice 1</small><b>Chlorure de baryum et chlorure de calcium</b></div><span class="tot">7 pts</span></div>
+    <p class="ctx">Le chlorure de baryum BaCl₂ est un composé ionique constitué des ions chlorure et des ions baryum. On dissout une masse <b>m = 4,16 g</b> de chlorure de baryum dans un volume <b>V₁ = 200 mL</b> d'eau. On obtient une solution S₁ de concentration C₁.</p>
+    <p class="part">Partie 1 · Solution S₁</p>
+    <ol class="qs">
+      <li><span class="qn">1-1</span><span>Quelles sont les étapes de dissolution du chlorure de baryum dans l'eau ?</span><span class="pt">0,75 pt</span></li>
+      <li><span class="qn">1-2</span><span>Écrire l'équation de dissolution du chlorure de baryum dans l'eau.</span><span class="pt">0,25 pt</span></li>
+      <li><span class="qn">1-3</span><span>Donner l'expression de C₁ en fonction de m, M et V₁, puis calculer sa valeur.</span><span class="pt">1 pt</span></li>
+      <li><span class="qn">1-4</span><span>Déterminer l'expression des concentrations effectives des ions chlorure et baryum dans S₁ en fonction de C₁, puis les calculer.</span><span class="pt">1 pt</span></li>
+      <li><span class="qn">1-5</span><span>Déterminer l'expression des quantités de matière des ions chlorure et baryum dans S₁ en fonction de C₁ et V₁, puis les calculer.</span><span class="pt">0,5 pt</span></li>
+    </ol>
+    <p class="part">Partie 2 · Solution S₂</p>
+    <p class="ctx">On prépare une solution S₂ de chlorure de calcium CaCl₂ de volume <b>V₂ = 50 mL</b> et de concentration <b>C₂ = 0,5 mol/L</b>, en dissolvant une masse m' de chlorure de calcium dans l'eau.</p>
+    <ol class="qs">
+      <li><span class="qn">2-1</span><span>Écrire l'équation de dissolution, puis déterminer l'expression des concentrations effectives des ions chlorure et calcium en fonction de C₂ et les calculer.</span><span class="pt">1 pt</span></li>
+      <li><span class="qn">2-2</span><span>Déterminer l'expression des quantités de matière des ions chlorure et calcium dans S₂ en fonction de C₂ et V₂, puis les calculer.</span><span class="pt">1 pt</span></li>
+    </ol>
+    <p class="part">Partie 3 · Mélange de S₁ et S₂</p>
+    <ol class="qs">
+      <li><span class="qn">3-1</span><span>Quels sont les ions présents dans le mélange obtenu ?</span><span class="pt">0,25 pt</span></li>
+      <li><span class="qn">3-2</span><span>Déterminer l'expression de la concentration effective de chaque ion présent dans le mélange, puis calculer leurs valeurs.</span><span class="pt">1 pt</span></li>
+      <li><span class="qn">3-3</span><span>Déterminer la valeur de la masse m' utilisée pour préparer S₂.</span><span class="pt">0,25 pt</span></li>
+    </ol>
+    <div class="data"><b>Données</b><span class="chip">M(Cl) = 35,5 g/mol</span><span class="chip">M(Ba) = 137 g/mol</span><span class="chip">M(Ca) = 40 g/mol</span></div>
+    <details class="corr"><summary>Voir la correction</summary><div class="sol">
+      <div class="sl"><span class="qn">1-1</span><div>Trois étapes : <b>dissociation</b> (l'eau polaire arrache les ions du cristal), <b>hydratation</b> (chaque ion s'entoure de molécules d'eau), <b>dispersion</b> (les ions hydratés se répartissent dans la solution).</div></div>
+      <div class="sl"><span class="qn">1-2</span><div>BaCl₂(s) → Ba²⁺(aq) + 2 Cl⁻(aq)</div></div>
+      <div class="sl"><span class="qn">1-3</span><div>C₁ = n / V₁ = <b>m / (M·V₁)</b><br>M(BaCl₂) = 137 + 2×35,5 = 208 g/mol<br>C₁ = 4,16 / (208 × 0,200) = <span class="hl">C₁ = 0,10 mol/L</span></div></div>
+      <div class="sl"><span class="qn">1-4</span><div>[Ba²⁺] = C₁ = <span class="hl">0,10 mol/L</span><br>[Cl⁻] = 2C₁ = <span class="hl">0,20 mol/L</span></div></div>
+      <div class="sl"><span class="qn">1-5</span><div>n(Ba²⁺) = C₁·V₁ = 0,10 × 0,200 = <span class="hl">0,020 mol</span><br>n(Cl⁻) = 2C₁·V₁ = <span class="hl">0,040 mol</span></div></div>
+      <div class="sl"><span class="qn">2-1</span><div>CaCl₂(s) → Ca²⁺(aq) + 2 Cl⁻(aq)<br>[Ca²⁺] = C₂ = <span class="hl">0,5 mol/L</span><br>[Cl⁻] = 2C₂ = <span class="hl">1,0 mol/L</span></div></div>
+      <div class="sl"><span class="qn">2-2</span><div>n(Ca²⁺) = C₂·V₂ = 0,5 × 0,050 = <span class="hl">0,025 mol</span><br>n(Cl⁻) = 2C₂·V₂ = <span class="hl">0,050 mol</span></div></div>
+      <div class="sl"><span class="qn">3-1</span><div>Ba²⁺(aq), Ca²⁺(aq) et Cl⁻(aq).</div></div>
+      <div class="sl"><span class="qn">3-2</span><div>V = V₁ + V₂ = 0,250 L<br>[Ba²⁺] = C₁V₁ / (V₁+V₂) = 0,020 / 0,250 = <span class="hl">0,08 mol/L</span><br>[Ca²⁺] = C₂V₂ / (V₁+V₂) = 0,025 / 0,250 = <span class="hl">0,10 mol/L</span><br>[Cl⁻] = (2C₁V₁ + 2C₂V₂) / (V₁+V₂) = 0,090 / 0,250 = <span class="hl">0,36 mol/L</span></div></div>
+      <div class="sl"><span class="qn">3-3</span><div>M(CaCl₂) = 40 + 71 = 111 g/mol<br>m' = C₂·V₂·M = 0,5 × 0,050 × 111 = <span class="hl">m' ≈ 2,78 g</span></div></div>
+    </div></details>
+  </article>
+
+  <article class="exo">
+    <div class="exo-head"><div><small>Exercice 2</small><b>Molécules polaires et nitrate de cuivre II</b></div><span class="tot">10 pts</span></div>
+    <p class="part">Partie 1 · Molécules (3 pts)</p>
+    <p class="ctx">On considère deux molécules : le méthane <b>CH₄</b> et le sulfure d'hydrogène <b>H₂S</b>.</p>
+    <div class="mols">
+      <figure class="m3d"><canvas id="mCH4" aria-label="Molécule de méthane en 3D, tétraédrique"></canvas><figcaption><b>CH₄</b> · tétraédrique (109,5°)</figcaption></figure>
+      <figure class="m3d"><canvas id="mH2S" aria-label="Molécule de sulfure d'hydrogène en 3D, coudée"></canvas><figcaption><b>H₂S</b> · coudée (92°)</figcaption></figure>
+    </div>
+    <div class="m3dctl"><span>Glisse sur une molécule pour la tourner</span><label for="showd"><input type="checkbox" id="showd"> Afficher δ+ / δ−</label></div>
+    <ol class="qs">
+      <li><span class="qn">1</span><span>Donner la définition de l'électronégativité.</span><span class="pt">0,5 pt</span></li>
+      <li><span class="qn">2</span><span>Dans ces molécules, les liaisons sont-elles polarisées ? Justifier à l'aide d'un schéma.</span><span class="pt">1 pt</span></li>
+      <li><span class="qn">3</span><span>Ces molécules sont-elles polaires ?</span><span class="pt">1,5 pt</span></li>
+    </ol>
+    <div class="data"><b>Données</b><span class="chip">Électronégativité croissante : H &lt; C &lt; N &lt; S &lt; O</span></div>
+    <p class="part">Partie 2 · Nitrate de cuivre II (7 pts)</p>
+    <p class="ctx">On prépare une solution S₁ en dissolvant une masse <b>m</b> de nitrate de cuivre II Cu(NO₃)₂(s) dans un volume <b>V₁ = 50 mL</b> d'eau.</p>
+    <ol class="qs">
+      <li><span class="qn">1</span><span>Calculer la masse m pour que la concentration molaire de S₁ soit C₁ = 0,25 mol·L⁻¹.</span><span class="pt">1,5 pt</span></li>
+      <li><span class="qn">2</span><span>Écrire l'équation de dissolution de Cu(NO₃)₂(s) dans l'eau.</span><span class="pt">1,5 pt</span></li>
+      <li><span class="qn">3</span><span>Écrire le symbole de la solution de nitrate de cuivre II.</span><span class="pt">1 pt</span></li>
+      <li><span class="qn">4</span><span>On ajoute à S₁ une solution de sulfate de cuivre II (Cu²⁺(aq) + SO₄²⁻(aq)) de volume V₂ = 100 mL et de concentration C₂ = 0,10 mol·L⁻¹. Calculer les concentrations des ions présents dans la solution finale en fonction de C₁, C₂, V₁ et V₂.</span><span class="pt">3 pts</span></li>
+    </ol>
+    <div class="data"><b>Données</b><span class="chip">M(Cu(NO₃)₂) = 187 g·mol⁻¹</span></div>
+    <details class="corr"><summary>Voir la correction</summary><div class="sol">
+      <p class="part" style="margin-left:0">Partie 1</p>
+      <div class="sl"><span class="qn">1</span><div>L'électronégativité est l'aptitude d'un atome à attirer vers lui le doublet d'électrons de la liaison covalente qui l'unit à un autre atome.</div></div>
+      <div class="sl"><span class="qn">2</span><div>Oui, chaque liaison relie deux atomes d'électronégativités différentes :<br>• C–H : C plus électronégatif que H → <span class="hl">H<sup>δ+</sup> — C<sup>δ−</sup></span><br>• S–H : S plus électronégatif que H → <span class="hl">H<sup>δ+</sup> — S<sup>δ−</sup></span><br><i>Coche « Afficher δ+ / δ− » sur les molécules 3D pour voir le schéma.</i></div></div>
+      <div class="sl"><span class="qn">3</span><div>• <span class="hl">CH₄ n'est pas polaire</span> : la géométrie tétraédrique est symétrique, le barycentre des 4 charges δ+ coïncide avec la charge 4δ− portée par C.<br>• <span class="hl">H₂S est polaire</span> : la molécule est coudée, le barycentre des 2 charges δ+ ne coïncide pas avec la charge 2δ− portée par S.</div></div>
+      <p class="part" style="margin-left:0">Partie 2</p>
+      <div class="sl"><span class="qn">1</span><div>m = n·M = C₁·V₁·M = 0,25 × 0,050 × 187 = <span class="hl">m ≈ 2,34 g</span></div></div>
+      <div class="sl"><span class="qn">2</span><div>Cu(NO₃)₂(s) → Cu²⁺(aq) + 2 NO₃⁻(aq)</div></div>
+      <div class="sl"><span class="qn">3</span><div><span class="hl">(Cu²⁺(aq) + 2 NO₃⁻(aq))</span></div></div>
+      <div class="sl"><span class="qn">4</span><div>Ions présents : Cu²⁺, NO₃⁻ et SO₄²⁻. V = V₁ + V₂ = 0,150 L<br>[Cu²⁺] = (C₁V₁ + C₂V₂) / (V₁+V₂) = 0,0225 / 0,150 = <span class="hl">0,15 mol/L</span><br>[NO₃⁻] = 2C₁V₁ / (V₁+V₂) = 0,025 / 0,150 ≈ <span class="hl">0,167 mol/L</span><br>[SO₄²⁻] = C₂V₂ / (V₁+V₂) = 0,010 / 0,150 ≈ <span class="hl">0,067 mol/L</span></div></div>
+    </div></details>
+  </article>
+</section>
+
+
+<section id="quiz">
+  <h2><span class="n">VI</span>Je teste mes connaissances</h2>
+  <p class="score" id="score">Score : 0 / 6</p>
+  <div id="qz"></div>
+</section>
+</main>
+
+<div id="revbar">Touche un mot flou pour le révéler · <span id="revcount"></span></div>
+<footer>
+  <div class="wrap">Cours interactif réalisé par <b>Pr Hicham MESBAH</b><br>Docteur en Électronique, traitement du signal et contrôle non destructif</div>
+</footer>
+
+<script>
+/* ---------- Signature : A-scan ultrasonore (impulsion + échos) ---------- */
+(function(){
+  const E=[[60,38,1],[250,34,.6],[430,30,.33]];let d='';
+  for(let x=0;x<=600;x+=2){let y=0;
+    E.forEach(([c,w,a])=>{const u=(x-c)/w;y+=a*Math.exp(-u*u*2.2)*Math.sin((x-c)*0.42);});
+    y+=0.03*Math.sin(x*1.7);
+    d+=(x?'L':'M')+x+' '+(45-y*36).toFixed(1);}
+  document.getElementById('echo').setAttribute('d',d);
+  document.getElementById('echo2').setAttribute('d',d);
+})();
+
+/* ---------- Figure cristal (section 1) ---------- */
+(function(){
+  const g=document.getElementById('lattice');let s='';
+  for(let r=0;r<4;r++)for(let c=0;c<6;c++){
+    const x=25+c*30,y=30+r*30,cat=(r+c)%2===0;
+    s+=`<circle cx="${x}" cy="${y}" r="${cat?8:12}" fill="${cat?'#38bdf8':'#22c55e'}"/><text x="${x}" y="${y+4}" text-anchor="middle" font-size="11" font-weight="700" fill="#0a1222">${cat?'+':'−'}</text>`;
+  }
+  g.innerHTML=s;
+})();
+
+/* ---------- Simulation ---------- */
+const SOL={
+  NaCl:{f:'NaCl',eq:'NaCl(s) → Na⁺(aq) + Cl⁻(aq)',
+    cat:{s:'Na⁺',lab:'+',col:'#38bdf8',r:9,z:1},an:{s:'Cl⁻',lab:'−',col:'#22c55e',r:13,z:-1},
+    isCat:(r,c)=>(r+c)%2===0},
+  CuCl2:{f:'CuCl₂',eq:'CuCl₂(s) → Cu²⁺(aq) + 2 Cl⁻(aq)',
+    cat:{s:'Cu²⁺',lab:'2+',col:'#3b82f6',r:10,z:2},an:{s:'Cl⁻',lab:'−',col:'#22c55e',r:13,z:-1},
+    isCat:(r,c)=>(r+c)%3===0}
+};
+const L=400, CX=200, CY=200, SP=28, G=6;
+const cv=document.getElementById('cv'), ctx=cv.getContext('2d');
+let ions=[], water=[], cur='NaCl', t=0, playing=true, speed=1, showFree=true, last=performance.now();
+const PH=[0,4,6.6];
+const CAPS=["L'eau polaire arrache les ions du cristal","Chaque ion s'entoure de molécules d'eau","Les ions hydratés se dispersent dans la solution"];
+const rnd=(a,b)=>a+Math.random()*(b-a);
+const clamp=x=>Math.max(0,Math.min(1,x));
+const ease=x=>x<.5?2*x*x:1-Math.pow(-2*x+2,2)/2;
+
+function init(key){
+  cur=key; const S=SOL[key]; ions=[];
+  const o=CX-(G-1)/2*SP;
+  for(let r=0;r<G;r++)for(let c=0;c<G;c++){
+    const cat=S.isCat(r,c), lx=o+c*SP, ly=o+r*SP;
+    let dx=lx-CX, dy=ly-CY, d=Math.hypot(dx,dy);
+    if(d<1){const a=rnd(0,6.28);dx=Math.cos(a);dy=Math.sin(a);d=1;}
+    ions.push({cat,sp:cat?S.cat:S.an,lx,ly,ux:dx/d,uy:dy/d,dist:d+rnd(-8,8),ph:rnd(0,6.28),ph2:rnd(0,6.28)});
+  }
+  ions.sort((a,b)=>b.dist-a.dist);
+  const N=ions.length;
+  ions.forEach((p,i)=>{p.d=0.3+i/N*5;p.ox=p.lx+p.ux*22;p.oy=p.ly+p.uy*22;});
+  // cibles de dispersion : grille avec bruit, attribuées dans la direction de sortie
+  const tg=[],cell=330/G;
+  for(let r=0;r<G;r++)for(let c=0;c<G;c++)tg.push({x:35+cell*(c+.5)+rnd(-12,12),y:35+cell*(r+.5)+rnd(-12,12),u:false});
+  ions.forEach(p=>{let best=null,bs=-1e9;
+    tg.forEach(q=>{if(q.u)return;const s=p.ux*(q.x-CX)+p.uy*(q.y-CY);if(s>bs){bs=s;best=q;}});
+    best.u=true;p.tx=best.x;p.ty=best.y;});
+  water=[];for(let i=0;i<55;i++)water.push({x:rnd(0,L),y:rnd(0,L),vx:rnd(-12,12),vy:rnd(-12,12),a:rnd(0,6.28),va:rnd(-1,1)});
+  t=0;
+  document.getElementById('bNaCl').setAttribute('aria-pressed',key==='NaCl');
+  document.getElementById('bCuCl2').setAttribute('aria-pressed',key==='CuCl2');
+  document.getElementById('leg').innerHTML=`<span style="color:${S.cat.col}">● ${S.cat.s}</span> &nbsp;<span style="color:${S.an.col}">● ${S.an.s}</span> &nbsp;<span style="color:#f0544f">●</span><span style="color:#fff">●</span> H₂O`;
+  const nc=ions.filter(p=>p.cat).length, na=N-nc;
+  document.getElementById('bilan').innerHTML=`<b>${S.eq}</b><br>Dans la simulation : ${nc} ions ${S.cat.s} et ${na} ions ${S.an.s} passent en solution.`;
+}
+
+function resize(){const dpr=window.devicePixelRatio||1;cv.width=Math.round(cv.clientWidth*dpr);cv.height=Math.round(cv.clientWidth*dpr);}
+window.addEventListener('resize',resize);
+
+function drawWater(x,y,ang,alpha,k){
+  ctx.globalAlpha=alpha;
+  ctx.fillStyle='#f1f5f9';
+  for(const s of[-0.92,0.92]){ctx.beginPath();ctx.arc(x+Math.cos(ang+s)*6*k,y+Math.sin(ang+s)*6*k,2.8*k,0,6.283);ctx.fill();}
+  ctx.fillStyle='#f0544f';ctx.beginPath();ctx.arc(x,y,4.6*k,0,6.283);ctx.fill();
+  ctx.globalAlpha=1;
+}
+function drawIon(x,y,sp){
+  const g=ctx.createRadialGradient(x-sp.r*.35,y-sp.r*.35,1,x,y,sp.r);
+  g.addColorStop(0,'#ffffff');g.addColorStop(.25,sp.col);g.addColorStop(1,sp.col);
+  ctx.fillStyle=g;ctx.beginPath();ctx.arc(x,y,sp.r,0,6.283);ctx.fill();
+  ctx.strokeStyle='rgba(255,255,255,.55)';ctx.lineWidth=1.2;ctx.stroke();
+  ctx.fillStyle='#06101f';ctx.font=`700 ${sp.lab.length>1?9:12}px Sora, sans-serif`;ctx.textAlign='center';ctx.textBaseline='middle';
+  ctx.fillText(sp.lab,x,y+.5);
+}
+
+function frame(now){
+  const dt=Math.min(.05,(now-last)/1000);last=now;
+  if(playing)t+=dt*speed;
+  const k=cv.width/L;ctx.setTransform(k,0,0,k,0,0);
+  ctx.clearRect(0,0,L,L);
+  // eau libre
+  if(showFree)water.forEach(w=>{
+    if(playing){w.x+=w.vx*dt*speed;w.y+=w.vy*dt*speed;w.a+=w.va*dt*speed;
+      if(w.x<-10)w.x=L+10;if(w.x>L+10)w.x=-10;if(w.y<-10)w.y=L+10;if(w.y>L+10)w.y=-10;}
+    drawWater(w.x,w.y,w.a,.28,1);
+  });
+  let nd=0,nh=0,ns=0;const N=ions.length;
+  // positions
+  ions.forEach(p=>{
+    const s=t-p.d;let x,y,h=0;
+    if(s<0){x=p.lx+.7*Math.sin(t*9+p.ph);y=p.ly+.7*Math.cos(t*8+p.ph2);}
+    else{nd++;
+      const a=ease(clamp(s/1));x=p.lx+(p.ox-p.lx)*a;y=p.ly+(p.oy-p.ly)*a;
+      h=clamp((s-.4)/1);if(h>=1)nh++;
+      const q=ease(clamp((s-1.5)/2.5));
+      if(q>0){x+= (p.tx-p.ox)*q;y+=(p.ty-p.oy)*q;
+        x+=3*q*Math.sin(t*1.3+p.ph);y+=3*q*Math.cos(t*1.1+p.ph2);}
+      if(s>=4)ns++;
+    }
+    p.x=x;p.y=y;p.h=h;
+  });
+  // couches d'hydratation
+  ions.forEach(p=>{if(p.h<=0)return;
+    const sp=p.sp,R=sp.r+9+(1-p.h)*26,n=p.cat?6:7,rot=t*.4+p.ph;
+    ctx.globalAlpha=.13*p.h;ctx.fillStyle=sp.col;ctx.beginPath();ctx.arc(p.x,p.y,R+8,0,6.283);ctx.fill();ctx.globalAlpha=1;
+    for(let i=0;i<n;i++){const a=rot+i*6.283/n;
+      drawWater(p.x+Math.cos(a)*R,p.y+Math.sin(a)*R,p.cat?a:a+Math.PI,p.h,1);}
+  });
+  ions.forEach(p=>drawIon(p.x,p.y,p.sp));
+  // interface
+  const vals=[nd/N,nh/N,ns/N];
+  vals.forEach((v,i)=>{document.getElementById('v'+i).textContent=Math.round(v*100)+' %';
+    document.getElementById('f'+i).style.height=(v*85)+'%';});
+  const ph=t<PH[1]?0:t<PH[2]?1:2;
+  document.querySelectorAll('.steps button').forEach(b=>b.classList.toggle('on',+b.dataset.s===ph));
+  document.getElementById('cap').textContent=CAPS[ph];
+  requestAnimationFrame(frame);
+}
+
+const playBtn=document.getElementById('play');
+function setPlay(v){playing=v;playBtn.textContent=v?'⏸ Pause':'▶ Lecture';}
+playBtn.onclick=()=>setPlay(!playing);
+document.getElementById('reset').onclick=()=>{init(cur);setPlay(true);};
+document.getElementById('speed').oninput=e=>speed=+e.target.value;
+document.getElementById('freew').onchange=e=>showFree=e.target.checked;
+document.getElementById('bNaCl').onclick=()=>{init('NaCl');setPlay(true);};
+document.getElementById('bCuCl2').onclick=()=>{init('CuCl2');setPlay(true);};
+document.querySelectorAll('.steps button').forEach(b=>b.onclick=()=>{t=PH[+b.dataset.s]+.01;});
+init('NaCl');resize();
+if(window.matchMedia('(prefers-reduced-motion: reduce)').matches)setPlay(false);
+requestAnimationFrame(frame);
+
+/* ---------- Calculateur ---------- */
+const SOLUTES=[
+  {n:'Chlorure de cuivre II — CuCl₂',M:134.5,eq:'CuCl₂ → Cu²⁺ + 2 Cl⁻',ions:[['Cu²⁺',1,2],['Cl⁻',2,-1]]},
+  {n:'Chlorure de sodium — NaCl',M:58.5,eq:'NaCl → Na⁺ + Cl⁻',ions:[['Na⁺',1,1],['Cl⁻',1,-1]]},
+  {n:'Sulfate de sodium — Na₂SO₄',M:142,eq:'Na₂SO₄ → 2 Na⁺ + SO₄²⁻',ions:[['Na⁺',2,1],['SO₄²⁻',1,-2]]},
+  {n:"Sulfate d'aluminium — Al₂(SO₄)₃",M:342,eq:'Al₂(SO₄)₃ → 2 Al³⁺ + 3 SO₄²⁻',ions:[['Al³⁺',2,3],['SO₄²⁻',3,-2]]},
+  {n:'Chlorure de fer III — FeCl₃',M:162.5,eq:'FeCl₃ → Fe³⁺ + 3 Cl⁻',ions:[['Fe³⁺',1,3],['Cl⁻',3,-1]]},
+  {n:'Chlorure de baryum — BaCl₂',M:208,eq:'BaCl₂ → Ba²⁺ + 2 Cl⁻',ions:[['Ba²⁺',1,2],['Cl⁻',2,-1]]},
+  {n:'Chlorure de calcium — CaCl₂',M:111,eq:'CaCl₂ → Ca²⁺ + 2 Cl⁻',ions:[['Ca²⁺',1,2],['Cl⁻',2,-1]]},
+  {n:'Nitrate de cuivre II — Cu(NO₃)₂',M:187,eq:'Cu(NO₃)₂ → Cu²⁺ + 2 NO₃⁻',ions:[['Cu²⁺',1,2],['NO₃⁻',2,-1]]},
+  {n:"Chlorure d'hydrogène — HCl",M:36.5,eq:'HCl + H₂O → H₃O⁺ + Cl⁻',ions:[['H₃O⁺',1,1],['Cl⁻',1,-1]]}
+];
+const sel=document.getElementById('solute');
+SOLUTES.forEach((s,i)=>{const o=document.createElement('option');o.value=i;o.textContent=s.n;sel.appendChild(o);});
+function fmt(x){
+  if(!isFinite(x))return '—';if(x===0)return '0';
+  if(Math.abs(x)<0.01||Math.abs(x)>=1000){const e=Math.floor(Math.log10(Math.abs(x)));const m=x/Math.pow(10,e);
+    return m.toFixed(2).replace('.',',')+' × 10'+String(e).replace('-','⁻').replace(/\d/g,d=>'⁰¹²³⁴⁵⁶⁷⁸⁹'[d]);}
+  return (+x.toPrecision(3)).toString().replace('.',',');
+}
+function calc(){
+  const s=SOLUTES[sel.value],m=parseFloat(document.getElementById('mass').value),V=parseFloat(document.getElementById('vol').value)/1000;
+  const box=document.getElementById('res');
+  if(!(m>0)||!(V>0)){box.innerHTML='<div class="line">Entre une masse et un volume positifs.</div>';return;}
+  const n=m/s.M,C=n/V;
+  let h=`<div class="line"><span>Équation</span><b>${s.eq}</b></div>
+  <div class="line"><span>M = ${fmt(s.M)} g/mol → n = m/M</span><b>${fmt(n)} mol</b></div>
+  <div class="line"><span>C = n/V</span><b>${fmt(C)} mol/L</b></div>`;
+  let pos=0,neg=0,pT=[],nT=[];
+  s.ions.forEach(([sym,k,z])=>{const c=k*C;h+=`<div class="line"><span>[${sym}] = ${k>1?k+'C':'C'}</span><b>${fmt(c)} mol/L</b></div>`;
+    if(z>0){pos+=z*c;pT.push((z>1?z:'')+'['+sym+']');}else{neg+=-z*c;nT.push((-z>1?-z:'')+'['+sym+']');}});
+  box.innerHTML=h;
+}
+['solute','mass','vol'].forEach(id=>document.getElementById(id).addEventListener('input',calc));
+calc();
+
+/* ---------- Quiz ---------- */
+const Q=[
+  {q:"Un solide ionique est :",o:["chargé positivement","chargé négativement","électriquement neutre"],a:2,e:"Les charges des cations compensent exactement celles des anions."},
+  {q:"Pourquoi l'eau dissout-elle les solides ioniques ?",o:["Parce qu'elle est polaire","Parce qu'elle est chaude","Parce qu'elle contient des ions"],a:0,e:"Les pôles δ+ et δ− de l'eau attirent les ions et les arrachent du cristal."},
+  {q:"Lors de l'hydratation d'un cation Na⁺, les molécules d'eau orientent vers lui :",o:["leurs atomes H (δ+)","leur atome O (δ−)","n'importe quel côté"],a:1,e:"Les charges opposées s'attirent : O (δ−) se tourne vers le cation."},
+  {q:"L'ordre des étapes de la dissolution est :",o:["hydratation → dispersion → dissociation","dissociation → hydratation → dispersion","dispersion → dissociation → hydratation"],a:1,e:"Les ions sont arrachés, entourés d'eau, puis répartis dans la solution."},
+  {q:"Pour une solution de CuCl₂ de concentration C, on a :",o:["[Cl⁻] = C","[Cl⁻] = C/2","[Cl⁻] = 2C"],a:2,e:"CuCl₂ → Cu²⁺ + 2 Cl⁻ : chaque unité donne deux ions chlorure."},
+  {q:"L'écriture [NaCl] dans une solution de chlorure de sodium :",o:["est égale à C","n'a pas de sens","est égale à 2C"],a:1,e:"NaCl n'existe plus en solution : on écrit seulement [Na⁺] et [Cl⁻]."}
+];
+let score=0;const qz=document.getElementById('qz');
+Q.forEach((x,i)=>{
+  const d=document.createElement('div');d.className='q';
+  d.innerHTML=`<p>${i+1}. ${x.q}</p><div class="opts">${x.o.map((o,j)=>`<button data-j="${j}">${o}</button>`).join('')}</div><div class="ex">${x.e}</div>`;
+  d.querySelectorAll('button').forEach(b=>b.onclick=()=>{
+    if(d.classList.contains('done'))return;d.classList.add('done');
+    const j=+b.dataset.j;d.querySelectorAll('button')[x.a].classList.add('good');
+    if(j===x.a)score++;else b.classList.add('wrong');
+    document.getElementById('score').textContent=`Score : ${score} / ${Q.length}`;
+  });
+  qz.appendChild(d);
+});
+
+/* ---------- Ions flottants dans l'en-tête ---------- */
+(function(){
+  const c=document.getElementById('bgions'),x=c.getContext('2d'),P=[];
+  const still=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  for(let i=0;i<34;i++)P.push({x:Math.random(),y:Math.random(),r:6+Math.random()*10,p:Math.random()<.5,vx:(Math.random()-.5)*.03,vy:(Math.random()-.5)*.03});
+  let last=performance.now();
+  function f(now){const dt=Math.min(.05,(now-last)/1000);last=now;
+    const w=c.clientWidth,h=c.clientHeight,d=devicePixelRatio||1;
+    if(c.width!==Math.round(w*d)){c.width=Math.round(w*d);c.height=Math.round(h*d);}
+    x.setTransform(d,0,0,d,0,0);x.clearRect(0,0,w,h);
+    P.forEach(q=>{if(!still){q.x+=q.vx*dt;q.y+=q.vy*dt;if(q.x<-.05)q.x=1.05;if(q.x>1.05)q.x=-.05;if(q.y<-.1)q.y=1.1;if(q.y>1.1)q.y=-.1;}
+      const X=q.x*w,Y=q.y*h,col=q.p?'76,201,240':'74,222,128';
+      const g=x.createRadialGradient(X,Y,0,X,Y,q.r*2.2);g.addColorStop(0,`rgba(${col},.55)`);g.addColorStop(1,`rgba(${col},0)`);
+      x.fillStyle=g;x.beginPath();x.arc(X,Y,q.r*2.2,0,6.283);x.fill();
+      x.fillStyle=`rgba(${col},.9)`;x.beginPath();x.arc(X,Y,q.r,0,6.283);x.fill();
+      x.fillStyle='#0e0b27';x.font=`700 ${q.r*1.2}px Sora,sans-serif`;x.textAlign='center';x.textBaseline='middle';x.fillText(q.p?'+':'−',X,Y+.5);});
+    if(!still)requestAnimationFrame(f);}
+  requestAnimationFrame(f);
+})();
+
+/* ---------- Apparition au défilement ---------- */
+(function(){
+  if(!('IntersectionObserver' in window)||matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+  const els=document.querySelectorAll('main section > *, main > .box');
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}),{threshold:.08,rootMargin:'0px 0px -30px 0px'});
+  els.forEach(el=>{const r=el.getBoundingClientRect();if(r.top>innerHeight){el.classList.add('rv');io.observe(el);}});
+})();
+
+/* ---------- Mode révision : mots-clés à révéler ---------- */
+(function(){
+  const btn=document.getElementById('revise'),cnt=document.getElementById('revcount');
+  const items=()=>document.querySelectorAll('.def b, .formula');
+  function upd(){const all=items(),n=[...all].filter(e=>e.classList.contains('shown')).length;cnt.textContent=n+' / '+all.length+' révélés';}
+  btn.onclick=()=>{const on=!document.body.classList.contains('revise');document.body.classList.toggle('revise',on);
+    btn.setAttribute('aria-pressed',on);btn.textContent=on?'Quitter la révision':'Mode révision';
+    items().forEach(e=>e.classList.remove('shown'));upd();};
+  document.addEventListener('click',e=>{if(!document.body.classList.contains('revise'))return;
+    const t=e.target.closest('.def b, .formula');if(t){t.classList.toggle('shown');upd();}});
+})();
+
+/* ---------- Molécules 3D (exercice 2) ---------- */
+(function(){
+  const COL={C:['#9ca3af','#374151'],H:['#ffffff','#9aa3b5'],S:['#fde68a','#ca8a04']};
+  const RAD={C:.42,H:.28,S:.55};
+  const k=1/Math.sqrt(3), still=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const a=46*Math.PI/180, b=1.15;
+  const MOLS=[
+    {id:'mCH4',atoms:[['C',0,0,0,'4δ−'],['H',k,k,k,'δ+'],['H',k,-k,-k,'δ+'],['H',-k,k,-k,'δ+'],['H',-k,-k,k,'δ+']],ry:.6},
+    {id:'mH2S',atoms:[['S',0,.25,0,'2δ−'],['H',b*Math.sin(a),.25-b*Math.cos(a),0,'δ+'],['H',-b*Math.sin(a),.25-b*Math.cos(a),0,'δ+']],ry:.4}
+  ];
+  const showd=document.getElementById('showd');
+  MOLS.forEach(m=>{
+    const cv=document.getElementById(m.id),ctx=cv.getContext('2d');let ry=m.ry,rx=-.35,drag=null;
+    cv.addEventListener('pointerdown',e=>{drag={x:e.clientX,y:e.clientY,ry,rx};cv.setPointerCapture(e.pointerId);});
+    cv.addEventListener('pointermove',e=>{if(!drag)return;ry=drag.ry+(e.clientX-drag.x)*.012;rx=Math.max(-1.4,Math.min(1.4,drag.rx+(e.clientY-drag.y)*.012));});
+    cv.addEventListener('pointerup',()=>drag=null);cv.addEventListener('pointercancel',()=>drag=null);
+    function proj(x,y,z,W){const cy=Math.cos(ry),sy=Math.sin(ry),cx=Math.cos(rx),sx=Math.sin(rx);
+      let X=x*cy+z*sy,Z=-x*sy+z*cy,Y=y*cx-Z*sx;Z=y*sx+Z*cx;const f=3.2/(3.2+Z),S=W*.34;
+      return{x:W/2+X*S*f,y:W/2-Y*S*f,z:Z,f,S};}
+    let last=performance.now();
+    function draw(now){const dt=Math.min(.05,(now-last)/1000);last=now;
+      if(!drag&&!still)ry+=dt*.6;
+      const d=devicePixelRatio||1,W=cv.clientWidth;if(cv.width!==Math.round(W*d)){cv.width=cv.height=Math.round(W*d);}
+      ctx.setTransform(d,0,0,d,0,0);ctx.clearRect(0,0,W,W);
+      const P=m.atoms.map(t=>({t,p:proj(t[1],t[2],t[3],W)}));
+      const items=[];
+      for(let i=1;i<P.length;i++)items.push({type:'b',a:P[0],b:P[i],z:(P[0].p.z+P[i].p.z)/2+.001});
+      P.forEach(q=>items.push({type:'a',q,z:q.p.z}));
+      items.sort((u,v)=>v.z-u.z);
+      items.forEach(it=>{
+        if(it.type==='b'){const A=it.a.p,B=it.b.p,w=W*.045*(A.f+B.f)/2;
+          ctx.lineCap='round';ctx.strokeStyle='#5b6479';ctx.lineWidth=w;ctx.beginPath();ctx.moveTo(A.x,A.y);ctx.lineTo(B.x,B.y);ctx.stroke();
+          ctx.strokeStyle='rgba(255,255,255,.35)';ctx.lineWidth=w*.3;ctx.beginPath();ctx.moveTo(A.x-w*.15,A.y-w*.15);ctx.lineTo(B.x-w*.15,B.y-w*.15);ctx.stroke();}
+        else{const p=it.q.p,el=it.q.t[0],r=RAD[el]*p.S*p.f;
+          ctx.fillStyle='rgba(0,0,0,.25)';ctx.beginPath();ctx.ellipse(p.x+r*.15,p.y+r*.2,r,r,0,0,6.283);ctx.fill();
+          const g=ctx.createRadialGradient(p.x-r*.4,p.y-r*.45,r*.08,p.x,p.y,r*1.05);
+          g.addColorStop(0,'#ffffff');g.addColorStop(.25,COL[el][0]);g.addColorStop(1,COL[el][1]);
+          ctx.fillStyle=g;ctx.beginPath();ctx.arc(p.x,p.y,r,0,6.283);ctx.fill();
+          ctx.fillStyle=el==='H'?'#334155':'#111827';ctx.font=`800 ${Math.max(10,r*.75)}px Sora,sans-serif`;ctx.textAlign='center';ctx.textBaseline='middle';
+          ctx.fillText(el,p.x,p.y+1);
+          if(showd.checked){const lab=it.q.t[4];ctx.font=`800 ${Math.max(11,W*.055)}px Sora,sans-serif`;
+            ctx.fillStyle='#ffb347';ctx.strokeStyle='rgba(14,11,39,.85)';ctx.lineWidth=4;
+            ctx.strokeText(lab,p.x+r*.9,p.y-r*.9);ctx.fillText(lab,p.x+r*.9,p.y-r*.9);}
+        }});
+      requestAnimationFrame(draw);}
+    requestAnimationFrame(draw);
+  });
+})();
+
+/* ---------- Expérience du jet d'eau ---------- */
+(function(){
+  const cv=document.getElementById('jet'),x=cv.getContext('2d'),W=360,H=400;
+  const FC={x:180,y:135},FR=95,NX=13,NB=262,TIP=70,BL=70,BR=290,BB=390;
+  const cap=document.getElementById('jetcap'),exp=document.getElementById('jetexp');
+  let t=-1,drops=[],gas=[],last=performance.now();
+  const ease=v=>v<.5?2*v*v:1-Math.pow(-2*v+2,2)/2,cl=v=>Math.max(0,Math.min(1,v));
+  function reset(){t=-1;drops=[];gas=[];for(let i=0;i<28;i++){const a=Math.random()*6.28,r=Math.sqrt(Math.random())*(FR-14);
+    gas.push({x:FC.x+Math.cos(a)*r,y:FC.y+Math.sin(a)*r,vx:(Math.random()-.5)*30,vy:(Math.random()-.5)*30});}
+    cap.textContent="Le ballon contient du chlorure d'hydrogène gazeux HCl(g). La cuve contient de l'eau + BBT (bleu).";
+    exp.innerHTML="Observe la couleur de l'eau pendant l'expérience. Le BBT (bleu de bromothymol) est bleu dans l'eau et jaune en milieu acide.";}
+  function flaskPath(){x.beginPath();const a=Math.asin(NX/FR);
+    x.arc(FC.x,FC.y,FR,Math.PI/2+a,Math.PI/2-a+2*Math.PI);x.lineTo(FC.x+NX,NB);x.lineTo(FC.x-NX,NB);x.closePath();}
+  function frame(now){const dt=Math.min(.05,(now-last)/1000);last=now;
+    if(t>=0)t+=dt;
+    const d=devicePixelRatio||1,cw=cv.clientWidth;if(cv.width!==Math.round(cw*d)){cv.width=Math.round(cw*d);cv.height=Math.round(cw*d*H/W);}
+    const k=cv.width/W;x.setTransform(k,0,0,k,0,0);x.clearRect(0,0,W,H);
+    const p=t<1.5?0:ease(cl((t-1.5)/6.5));
+    const lvl=315+28*p;
+    // cuve
+    x.fillStyle='rgba(59,130,246,.65)';x.fillRect(BL+3,lvl,BR-BL-6,BB-lvl-2);
+    x.strokeStyle='rgba(255,255,255,.65)';x.lineWidth=2.5;x.beginPath();x.moveTo(BL,285);x.lineTo(BL,BB);x.lineTo(BR,BB);x.lineTo(BR,285);x.stroke();
+    x.fillStyle='#b4b0d6';x.font='600 12px "Source Sans 3",sans-serif';x.textAlign='left';x.fillText('Eau + BBT',BL+8,BB-10);
+    // ballon : contenu
+    x.save();flaskPath();x.clip();
+    gas.forEach(g=>{g.x+=g.vx*dt;g.y+=g.vy*dt;const dx=g.x-FC.x,dy=g.y-FC.y;if(Math.hypot(dx,dy)>FR-8){g.vx*=-1;g.vy*=-1;}
+      x.fillStyle=`rgba(200,210,230,${.55*(1-p)})`;x.beginPath();x.arc(g.x,g.y,2.6,0,6.283);x.fill();});
+    if(p>0){const top=NB-(NB-(FC.y-FR*.72))*p;const gr=x.createLinearGradient(0,top,0,NB);
+      gr.addColorStop(0,'rgba(250,204,21,.85)');gr.addColorStop(1,'rgba(234,179,8,.9)');x.fillStyle=gr;x.fillRect(0,top,W,NB-top);
+      x.fillStyle='rgba(255,255,255,.25)';x.fillRect(0,top,W,2);}
+    // gouttes du jet
+    if(t>1.5&&t<8.5)for(let i=0;i<3;i++)drops.push({x:FC.x,y:TIP,vx:(Math.random()-.5)*120,vy:-(140+Math.random()*120)});
+    const top=NB-(NB-(FC.y-FR*.72))*p;
+    drops=drops.filter(o=>{o.vy+=320*dt;o.x+=o.vx*dt;o.y+=o.vy*dt;const r=Math.hypot(o.x-FC.x,o.y-FC.y);
+      if(r>FR-3||o.y>top)return false;x.fillStyle='rgba(250,204,21,.95)';x.beginPath();x.arc(o.x,o.y,2.4,0,6.283);x.fill();return true;});
+    x.restore();
+    // tube
+    const rise=t<0?lvl:t<1.5?lvl-(lvl-TIP)*ease(cl(t/1.5)):TIP;
+    x.fillStyle='rgba(59,130,246,.85)';x.fillRect(FC.x-2,Math.max(rise,NB),4,BB-8-Math.max(rise,NB));
+    if(rise<NB){x.fillStyle='rgba(250,204,21,.95)';x.fillRect(FC.x-2,rise,4,NB-rise);}
+    x.strokeStyle='rgba(255,255,255,.7)';x.lineWidth=1.4;x.strokeRect(FC.x-3.5,TIP,7,BB-8-TIP);
+    // verre du ballon + bouchon
+    flaskPath();x.strokeStyle='rgba(255,255,255,.7)';x.lineWidth=2.5;x.stroke();
+    x.fillStyle='#8b6b4a';x.fillRect(FC.x-NX-3,NB-6,2*NX+6,16);
+    tag(x,'Ballon',300,38,250,70);
+    tag(x,"Jet d'eau",12,38,174,70);
+    tag(x,'Bouchon',300,262,196,262);
+    tag(x,'Tube effilé',70,280,177,280,'right');
+    tag(x,'Cuve',296,330,290,330);
+    if(p<.3){x.fillStyle=`rgba(243,241,255,${1-p/.3})`;x.font='700 15px Sora,sans-serif';x.textAlign='center';x.fillText('HCl(g)',FC.x,FC.y-40);}
+    // étapes
+    const cur=t<1.5?3:t<8?4:5;
+    document.querySelectorAll('#jsteps li').forEach((li,i)=>{li.classList.toggle('done',i<cur);li.classList.toggle('now',t>=0&&i===cur);});
+    // textes
+    if(t>=0){if(t<1.5)cap.textContent="Quelques gouttes d'eau montent : HCl se dissout et la pression baisse dans le ballon.";
+      else if(t<8)cap.textContent="L'eau est aspirée et jaillit en jet. Elle devient jaune !";
+      else{cap.textContent="Le ballon se remplit d'une solution jaune : elle est acide.";
+        exp.innerHTML="<b>Interprétation :</b> HCl(g) est très soluble dans l'eau. Sa dissolution fait baisser la pression dans le ballon, donc l'eau est aspirée et forme un jet. Le BBT devient jaune : la solution est <b>acide</b>, elle contient des ions H⁺(aq).";}}
+    requestAnimationFrame(frame);}
+  document.getElementById('jetgo').onclick=()=>{if(t<0)t=0;};
+  document.getElementById('jetreset').onclick=reset;
+  reset();requestAnimationFrame(frame);
+})();
+
+/* ---------- Étiquettes communes ---------- */
+function tag(x,txt,tx,ty,px,py,al){x.save();x.strokeStyle='rgba(255,214,150,.85)';x.lineWidth=1.2;x.beginPath();x.moveTo(tx,ty);x.lineTo(px,py);x.stroke();
+  x.fillStyle='#ffd59a';x.beginPath();x.arc(px,py,2.4,0,6.283);x.fill();
+  x.font='700 11.5px "Source Sans 3",sans-serif';x.textAlign=al||'left';x.textBaseline='middle';
+  const w=x.measureText(txt).width,bx=al==='right'?tx-w-4:tx-4+(al==='center'?-w/2:0);
+  x.fillStyle='rgba(14,11,39,.85)';x.fillRect(al==='right'?tx-w-5:al==='center'?tx-w/2-4:tx-1,ty-9,w+8,18);
+  x.fillStyle='#ffe7c2';x.fillText(txt,al==='right'?tx-1:al==='center'?tx:tx+3,ty);x.restore();}
+function steps(id,done,now){document.querySelectorAll('#'+id+' li').forEach((li,i)=>{li.classList.toggle('done',i<done);li.classList.toggle('now',i===now);});}
+function fit(cv,W,H){const d=devicePixelRatio||1,cw=cv.clientWidth;if(cv.width!==Math.round(cw*d)){cv.width=Math.round(cw*d);cv.height=Math.round(cw*d*H/W);}
+  const x=cv.getContext('2d');x.setTransform(cv.width/W,0,0,cv.width/W,0,0);x.clearRect(0,0,W,H);return x;}
+
+/* ---------- Expérience d'électrisation ---------- */
+(function(){
+  const cv=document.getElementById('elec'),W=360,H=380,cap=document.getElementById('ecap'),ex=document.getElementById('eexp');
+  let rub=0,rubbing=false,app=0,appDir=0,t=0,last=performance.now();
+  const ease=v=>v<.5?2*v*v:1-Math.pow(-2*v+2,2)/2;
+  function reset(){rub=0;rubbing=false;app=0;appDir=0;cap.textContent="Un mince filet d'eau s'écoule de la burette dans le bécher.";
+    ex.innerHTML="Essaie aussi d'approcher le tube sans le frotter : que se passe-t-il ?";}
+  function frame(now){const dt=Math.min(.05,(now-last)/1000);last=now;t+=dt;
+    if(rubbing){rub=Math.min(1,rub+dt/1.8);if(rub>=1)rubbing=false;}
+    if(appDir){app=Math.max(0,Math.min(1,app+appDir*dt/1.1));}
+    const x=fit(cv,W,H);
+    const charged=rub>=1?1:0, rx=258-86*ease(app), defl=charged*ease(app);
+    // burette
+    x.fillStyle='rgba(76,201,240,.35)';x.fillRect(141,8,18,78);
+    x.strokeStyle='rgba(255,255,255,.7)';x.lineWidth=2;x.strokeRect(141,0,18,88);
+    for(let g=14;g<84;g+=10){x.beginPath();x.moveTo(141,g);x.lineTo(148,g);x.stroke();}
+    x.beginPath();x.moveTo(145,88);x.lineTo(148,108);x.lineTo(152,108);x.lineTo(155,88);x.stroke();
+    x.fillStyle='#64748b';x.fillRect(128,92,44,6);x.fillStyle='#94a3b8';x.fillRect(146,90,8,10);
+    // filet d'eau
+    const Y0=108,Y1=332,pts=[];for(let y=Y0;y<=Y1;y+=4){const u=(y-Y0)/(Y1-Y0);pts.push([150+defl*58*Math.pow(u,1.35),y]);}
+    x.strokeStyle='rgba(76,201,240,.45)';x.lineWidth=4;x.beginPath();pts.forEach((p,i)=>i?x.lineTo(p[0],p[1]):x.moveTo(p[0],p[1]));x.stroke();
+    x.strokeStyle='rgba(190,235,255,.95)';x.lineWidth=2;x.setLineDash([7,9]);x.lineDashOffset=-t*90;
+    x.beginPath();pts.forEach((p,i)=>i?x.lineTo(p[0],p[1]):x.moveTo(p[0],p[1]));x.stroke();x.setLineDash([]);
+    // bécher
+    x.fillStyle='rgba(59,130,246,.55)';x.fillRect(84,334,172,32);
+    x.strokeStyle='rgba(255,255,255,.7)';x.lineWidth=2.5;x.beginPath();x.moveTo(82,296);x.lineTo(82,368);x.lineTo(258,368);x.lineTo(258,296);x.stroke();
+    // tube en plastique
+    const ry=228;const gr=x.createLinearGradient(0,ry-9,0,ry+9);gr.addColorStop(0,'#c7d2fe');gr.addColorStop(.5,'#818cf8');gr.addColorStop(1,'#4338ca');
+    x.fillStyle=gr;x.beginPath();x.roundRect(rx,ry-9,150,18,9);x.fill();
+    if(rub>0){x.fillStyle=`rgba(255,255,255,${rub})`;x.font='800 13px Sora,sans-serif';x.textAlign='center';x.textBaseline='middle';
+      for(let i=0;i<6;i++)x.fillText('−',rx+14+i*22,ry);}
+    if(rubbing){const cx=rx+20+(Math.sin(t*14)*.5+.5)*90;x.fillStyle='#e7c8a0';x.beginPath();x.roundRect(cx-18,ry-15,36,30,6);x.fill();
+      x.strokeStyle='#b48a5a';x.lineWidth=1.5;x.stroke();}
+    // étiquettes
+    tag(x,'Burette',200,30,160,30);
+    tag(x,'Robinet',200,95,172,95);
+    tag(x,"Filet d'eau",12,200,150+defl*58*Math.pow((200-Y0)/(Y1-Y0),1.35)-2,200);
+    tag(x,charged?'Tube en plastique frotté (chargé −)':'Tube en plastique',Math.min(rx+4,200),262,rx+40,ry+9);
+    if(rubbing)tag(x,'Chiffon en laine',Math.min(rx+60,250),190,rx+60,ry-15);
+    tag(x,'Bécher',266,350,258,350);
+    // étapes et textes
+    if(app>=.99&&charged){steps('esteps',4,-1);cap.textContent="Le filet d'eau est dévié vers le tube frotté !";
+      ex.innerHTML="<b>Interprétation :</b> les molécules d'eau sont dipolaires. Elles sont attirées par les charges électriques du tube frotté, donc le filet d'eau est dévié.";}
+    else if(app>=.99&&!charged){steps('esteps',1,1);cap.textContent="Tube non frotté : le filet d'eau n'est pas dévié.";}
+    else if(rubbing){steps('esteps',1,1);cap.textContent="On frotte le tube avec le chiffon en laine…";}
+    else if(charged){steps('esteps',2,2);if(app<.01)cap.textContent="Le tube est électrisé. Approche-le du filet d'eau.";}
+    else steps('esteps',1,1);
+    requestAnimationFrame(frame);}
+  document.getElementById('erub').onclick=()=>{if(rub<1&&!rubbing){appDir=-1;rubbing=true;}};
+  document.getElementById('eapp').onclick=()=>{appDir=app>.5?-1:1;};
+  document.getElementById('ereset').onclick=reset;
+  reset();requestAnimationFrame(frame);
+})();
+
+/* ---------- Dissolution de l'acide sulfurique ---------- */
+(function(){
+  const cv=document.getElementById('acid'),W=360,H=380,cap=document.getElementById('acap'),ex=document.getElementById('aexp');
+  const N=24;let T=20,added=0,emit=-1,drops=[],last=performance.now(),tt=0;
+  function reset(){T=20;added=0;emit=-1;drops=[];cap.textContent="Le thermomètre indique la température de l'eau : θ₀ ≈ 20 °C.";
+    ex.innerHTML="<b>Sécurité :</b> porter des lunettes et des gants. Toujours verser l'acide dans l'eau, jamais l'inverse.";}
+  function frame(now){const dt=Math.min(.05,(now-last)/1000);last=now;tt+=dt;
+    if(emit>=0){emit+=dt;const want=Math.min(N,Math.floor(emit/.25));while(added+drops.length<want)drops.push({x:132,y:176,v:0});}
+    const x=fit(cv,W,H);
+    const target=20+25*added/N;T+=(target-T)*Math.min(1,dt*1.6);
+    // pipette d'acide
+    x.fillStyle='rgba(253,230,138,.45)';x.fillRect(127,40,10,(1-(added+drops.length)/N)*120+8);
+    x.strokeStyle='rgba(255,255,255,.7)';x.lineWidth=2;x.strokeRect(127,40,10,128);
+    x.beginPath();x.moveTo(127,168);x.lineTo(131,178);x.lineTo(133,178);x.lineTo(137,168);x.stroke();
+    x.fillStyle='#ef4444';x.beginPath();x.roundRect(123,22,18,20,6);x.fill();
+    // eau (teinte chaude)
+    const heat=(T-20)/25;
+    x.fillStyle=`rgba(${Math.round(59+150*heat)},${Math.round(130-40*heat)},${Math.round(246-170*heat)},.55)`;x.fillRect(92,252,156,106);
+    if(heat>.05){x.strokeStyle=`rgba(255,200,150,${.5*heat})`;x.lineWidth=1.5;
+      for(let i=0;i<4;i++){const bx=110+i*36;x.beginPath();for(let y=0;y<30;y+=2){const xx=bx+Math.sin((y+tt*40)/5)*3;y?x.lineTo(xx,236-y):x.moveTo(xx,236-y);}x.stroke();}}
+    // gouttes
+    drops=drops.filter(o=>{o.v+=500*dt;o.y+=o.v*dt;if(o.y>=252){added++;return false;}
+      x.fillStyle='#fde68a';x.beginPath();x.arc(o.x,o.y,3.2,0,6.283);x.fill();return true;});
+    // bécher
+    x.strokeStyle='rgba(255,255,255,.7)';x.lineWidth=2.5;x.beginPath();x.moveTo(90,206);x.lineTo(90,360);x.lineTo(250,360);x.lineTo(250,206);x.stroke();
+    // thermomètre
+    x.fillStyle='rgba(255,255,255,.12)';x.fillRect(200,110,10,230);x.strokeStyle='rgba(255,255,255,.8)';x.lineWidth=1.5;x.strokeRect(200,110,10,230);
+    for(let v=10;v<=50;v+=10){const y=330-(v-10)*5;x.beginPath();x.moveTo(210,y);x.lineTo(216,y);x.stroke();
+      x.fillStyle='#b4b0d6';x.font='600 9px "Source Sans 3",sans-serif';x.textAlign='left';x.textBaseline='middle';x.fillText(v,218,y);}
+    const yT=330-(T-10)*5;x.fillStyle='#ef4444';x.fillRect(202.5,yT,5,342-yT);x.beginPath();x.arc(205,346,9,0,6.283);x.fill();
+    // afficheur
+    x.fillStyle='rgba(14,11,39,.9)';x.beginPath();x.roundRect(262,18,88,44,10);x.fill();x.strokeStyle='#ffb347';x.lineWidth=1.5;x.stroke();
+    x.fillStyle='#ffd59a';x.font='800 17px Sora,sans-serif';x.textAlign='center';x.textBaseline='middle';x.fillText('θ = '+T.toFixed(1).replace('.',',')+' °C',306,41);
+    // étiquettes
+    tag(x,'Acide sulfurique',116,70,127,70,'right');
+    tag(x,'concentré',116,88,127,88,'right');
+    tag(x,'Thermomètre',262,140,210,150);
+    tag(x,'Eau distillée',80,300,100,300,'right');
+    tag(x,'Bécher',262,345,250,345);
+    // étapes et textes
+    if(emit<0)steps('asteps',1,1);
+    else if(added<N){steps('asteps',1,1);cap.textContent="On ajoute l'acide goutte à goutte en agitant : la température monte.";}
+    else{steps('asteps',3,-1);cap.textContent="La température est passée de 20 °C à environ 45 °C.";
+      ex.innerHTML="<b>Interprétation :</b> la dissolution de l'acide sulfurique dégage de la chaleur : il y a une réaction entre H₂SO₄ et l'eau, qui donne des ions H⁺(aq) et SO₄²⁻(aq).<br><b>Sécurité :</b> toujours verser l'acide dans l'eau, jamais l'inverse.";}
+    requestAnimationFrame(frame);}
+  document.getElementById('ago').onclick=()=>{if(emit<0)emit=0;};
+  document.getElementById('areset').onclick=reset;
+  reset();requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>
